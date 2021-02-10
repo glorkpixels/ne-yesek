@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "607192546768",
+    "firebase_url": "https://ne-yesek-ebf2f-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ne-yesek-ebf2f",
+    "storage_bucket": "ne-yesek-ebf2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607192546768:android:bae19fa629a073335acdd5",
+        "android_client_info": {
+          "package_name": "com.deu.neyesek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "607192546768-a08prih5gg9k0r9undcgiopg8avrhgg6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJR7lSBp5NYDw9srH27D8xGeLKnJnmm3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "607192546768-a08prih5gg9k0r9undcgiopg8avrhgg6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
