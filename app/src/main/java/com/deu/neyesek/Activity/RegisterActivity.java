@@ -1,50 +1,37 @@
 package com.deu.neyesek.Activity;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.deu.neyesek.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
-
-import android.os.Bundle;
-import android.content.Intent;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 public class RegisterActivity extends AppCompatActivity {
     ImageView ImgUserPhoto;
     static int PReqCode = 1 ;
@@ -148,30 +135,29 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password))//buralar eklencek
                 {
-                    fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            // if clicked create student or teacher on chosen  kind
 
-                            String emailUser = fAuth.getCurrentUser().getEmail();
-                            DatabaseReference currentUser = referenceUser.child(emailUser);
+                    System.out.println("user kayıııııııt");
+                    fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                        // if clicked create student or teacher on chosen  kind
 
-                            currentUser.child("UserKey").setValue(emailUser);
-                            currentUser.child("Name").setValue(name);
-                            currentUser.child("Surname").setValue(surname);
-                            currentUser.child("Email").setValue(email);
-                            currentUser.child("Password").setValue(password);
-                            currentUser.child("Age").setValue(age);
-                            currentUser.child("Height").setValue(height);
-                            currentUser.child("Weight").setValue(weight);
-                            currentUser.child("Gender").setValue(gender);
+                        String emailUser = fAuth.getCurrentUser().getUid();
+                        DatabaseReference currentUser = referenceUser.child(emailUser);
 
-                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                            Toast.makeText(RegisterActivity.this, "Your account has been created..", Toast.LENGTH_LONG).show();
-                            updateUI();
+                        currentUser.child("UserKey").setValue(emailUser);
+                        currentUser.child("Name").setValue(name);
+                        currentUser.child("Surname").setValue(surname);
+                        currentUser.child("Email").setValue(email);
+                        currentUser.child("Password").setValue(password);
+                        currentUser.child("Age").setValue(age);
+                        currentUser.child("Height").setValue(height);
+                        currentUser.child("Weight").setValue(weight);
+                        currentUser.child("Gender").setValue(gender);
+                        updateUserInfo( name ,pickedImgUri,fAuth.getCurrentUser()); updateUserInfo( name ,pickedImgUri,fAuth.getCurrentUser());
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        Toast.makeText(RegisterActivity.this, "Your account has been created..", Toast.LENGTH_LONG).show();
+                        updateUI();
 
 
-                        }
                     });
                 } else {
                     Toast.makeText(RegisterActivity.this, "Complete all fields", Toast.LENGTH_SHORT).show();
