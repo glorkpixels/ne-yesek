@@ -4,20 +4,171 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/food"
     tools:context=".Fragments.HomeFragment">
 
-    <TextView
-        android:id="@+id/WELCOME"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+    <ImageButton
+        android:id="@+id/recipe"
+        android:layout_width="140dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#4DFFFDFD"
+        android:src="@drawable/recipe"
+        app:layout_constraintEnd_toStartOf="@+id/menus"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:src="@drawable/recipe" />
+
+    <ImageButton
+        android:id="@+id/menus"
+        android:layout_width="138dp"
+        android:layout_height="138dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="44dp"
+        android:backgroundTint="#4DFFFDFD"
+        android:src="@drawable/menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:src="@drawable/menu" />
+
+    <ImageButton
+        android:id="@+id/cellar"
+        android:layout_width="138dp"
+        android:layout_height="138dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#4DFFFDFD"
+        android:src="@drawable/refrigerator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe"
+        tools:ignore="MissingConstraints"
+        tools:src="@drawable/refrigerator" />
+
+    <ImageButton
+        android:id="@+id/shoppinglist"
+        android:layout_width="138dp"
+        android:layout_height="138dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="#4DFFFDFD"
+        android:src="@drawable/market"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.927"
+        app:layout_constraintStart_toEndOf="@+id/cellar"
+        app:layout_constraintTop_toBottomOf="@+id/menus"
+        tools:ignore="MissingConstraints"
+        tools:src="@drawable/market" />
+
+    <ImageButton
+        android:id="@+id/recommend"
+        android:layout_width="135dp"
+        android:layout_height="131dp"
+        android:backgroundTint="#4DFFFDFD"
+        android:src="@drawable/order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="WELCOME" />
+        app:layout_constraintTop_toTopOf="@id/cellartext"
+        tools:ignore="MissingConstraints"
+        tools:src="@drawable/order" />
+
+    <EditText
+        android:id="@+id/recipetext"
+        android:layout_width="95dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="84dp"
+        android:background="@color/white"
+        android:backgroundTint="#4DFFFDFD"
+        android:ems="10"
+        android:text="Recipes"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/cellar"
+        app:layout_constraintEnd_toStartOf="@+id/recipetext2"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <EditText
+        android:id="@+id/recipetext2"
+        android:layout_width="93dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="36dp"
+        android:background="@color/white"
+        android:backgroundTint="#4DFFFDFD"
+        android:ems="10"
+        android:text="Menu"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/shoppinglist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menus"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/cellartext"
+        android:layout_width="102dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:backgroundTint="#4DFFFDFD"
+        android:ems="10"
+        android:text="Cellar"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/recommend"
+        app:layout_constraintEnd_toStartOf="@+id/shoptext"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cellar"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <EditText
+        android:id="@+id/shoptext"
+        android:layout_width="118dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="52dp"
+        android:background="@color/white"
+        android:backgroundTint="#4DFFFDFD"
+        android:ems="10"
+        android:text="Shopping List"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/recommend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shoppinglist"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/createmenutext"
+        android:layout_width="118dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:backgroundTint="#4DFFFDFD"
+        android:ems="10"
+        android:text="Create Menu"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recommend"
+        app:layout_constraintVertical_bias="0.0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

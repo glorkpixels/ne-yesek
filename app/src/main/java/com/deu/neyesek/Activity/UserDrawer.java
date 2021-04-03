@@ -91,7 +91,7 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
         updateNavHeader();
 
 
-        getSupportActionBar().setTitle("Courses");
+        getSupportActionBar().setTitle("Home");
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
     }
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/registerlogin"
+    android:background="@drawable/food"
     tools:context=".Activity.LoginActivity">
 
 
@@ -48,7 +48,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/applicationName"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/passwordLogin"
@@ -71,16 +72,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLogin"
-        app:layout_constraintVertical_bias="0.326" />
+        app:layout_constraintVertical_bias="0.326"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="168dp"
         android:layout_height="60dp"
         android:layout_marginBottom="128dp"
-        android:background="#E6E4C6"
+        android:background="#EF0000"
         android:text="LOGIN"
-        android:textColor="#000000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,16 +96,18 @@
         android:layout_width="241dp"
         android:layout_height="60dp"
         android:layout_marginBottom="64dp"
-        android:background="#AFB9F3"
+        android:background="#009688"
         android:text="Create Account"
-        android:textColor="#000000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLogin"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        app:strokeColor="#E30000" />
 
     <ImageView
         android:id="@+id/imageView"
