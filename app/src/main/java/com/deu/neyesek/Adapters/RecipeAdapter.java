@@ -84,12 +84,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
                     int position = getAdapterPosition();
                     System.out.println(mData.get(position).getName() + " lol");
                     postDetailActivity.putExtra("Name", mData.get(position).getName());
-                    postDetailActivity.putExtra("postImage", mData.get(position).getImage());
-                    postDetailActivity.putExtra("description", mData.get(position).getRecipeDetails());
-                    postDetailActivity.putExtra("prepdet", mData.get(position).getPrepDetails());
+                    postDetailActivity.putExtra("Image", mData.get(position).getImage());
+                    postDetailActivity.putExtra("Desc", mData.get(position).getRecipeDetails());
+                    //postDetailActivity.putExtra("prepdet", mData.get(position).getPrepDetails());
                     postDetailActivity.putExtra("postKey", mData.get(position).getRecipeKey());
                     // will fix this later i forgot to add user name to post object
-                    postDetailActivity.putExtra("userId", mData.get(position).getIngridients());
+                   // postDetailActivity.putExtra("userId", mData.get(position).getIngridients());
 
                     mContext.startActivity(postDetailActivity);
                     // if any post clicked we call post detail activity to show of post details and comments of it

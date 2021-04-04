@@ -89,6 +89,16 @@ public class RecipeDetailActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         // add Comment button click listner
+        String postImage = getIntent().getExtras().getString("Image") ;
+        Glide.with(this).load(postImage).into(imgPost);
+
+        String postTitle = getIntent().getExtras().getString("Name");
+        txtPostTitle.setText(postTitle);
+        String postDescription = getIntent().getExtras().getString("Desc");
+
+        PostKey = getIntent().getExtras().getString("postKey");
+        txtPostDesc.setText(postDescription);
+
 
         btnAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
