@@ -1,16 +1,22 @@
 package com.deu.neyesek.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +35,11 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
+    ImageButton Recipe ;
+    ImageButton Menus;
+    ImageButton Cellar;
+    ImageButton ShopList;
+    ImageButton Recommend;
 
     // putting courses on view to show to student classes that enrolled by course code on main screen
     // TODO: Rename parameter arguments, choose names that match
@@ -64,16 +75,31 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+/*
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+*/
 
 
+        Recipe = getView().findViewById(R.id.recipe);
+        Menus = getView().findViewById(R.id.menus);
+        Cellar = getView().findViewById(R.id.cellar);
+        ShopList = getView().findViewById(R.id.shoppinglist);
+        Recommend = getView().findViewById(R.id.recommend);
+        //set a onclick listener for when the button gets clicked
+        //Start new list activity
+        Recipe.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container, new RecipeFragment()).commit();
+        });
 
     }
 
@@ -91,6 +117,8 @@ public class HomeFragment extends Fragment {
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
+            System.out.println(uri);
+
         }
     }
 
