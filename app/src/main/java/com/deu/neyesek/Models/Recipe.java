@@ -1,6 +1,5 @@
 package com.deu.neyesek.Models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe {
@@ -11,17 +10,17 @@ public class Recipe {
     private String Cuisine;
     private String Image;
     private String ShortDescription;
-    private ArrayList IngridientNames;
-    private ArrayList Ingridients;
-    private ArrayList Keywords;
-    private ArrayList PrepDetails;
-    private ArrayList RecipeDetails;
+    private String IngridientNames;
+    private String Ingridients;
+    private String Keywords;
+    private String PrepDetails;
+    private String RecipeDetails;
 
     public Recipe() {
 
     }
 
-    public Recipe(String categoryBread, String name, String mainCategory, String cuisine, String image, String shortDescription, ArrayList ingridientNames, ArrayList ingridients, ArrayList keywords, ArrayList prepDetails, ArrayList recipeDetails) {
+    public Recipe(String categoryBread, String name, String mainCategory, String cuisine, String image, String shortDescription, String ingridientNames, String ingridients, String keywords, String prepDetails, String recipeDetails) {
         CategoryBread = categoryBread;
         Name = name;
         MainCategory = mainCategory;
@@ -91,43 +90,43 @@ public class Recipe {
         ShortDescription = shortDescription;
     }
 
-    public ArrayList getIngridientNames() {
+    public String getIngridientNames() {
         return IngridientNames;
     }
 
-    public void setIngridientNames(ArrayList ingridientNames) {
+    public void setIngridientNames(String ingridientNames) {
         IngridientNames = ingridientNames;
     }
 
-    public ArrayList getIngridients() {
+    public String getIngridients() {
         return Ingridients;
     }
 
-    public void setIngridients(ArrayList ingridients) {
+    public void setIngridients(String ingridients) {
         Ingridients = ingridients;
     }
 
-    public ArrayList getKeywords() {
+    public String getKeywords() {
         return Keywords;
     }
 
-    public void setKeywords(ArrayList keywords) {
+    public void setKeywords(String keywords) {
         Keywords = keywords;
     }
 
-    public ArrayList getPrepDetails() {
+    public String getPrepDetails() {
         return PrepDetails;
     }
 
-    public void setPrepDetails(ArrayList prepDetails) {
+    public void setPrepDetails(String prepDetails) {
         PrepDetails = prepDetails;
     }
 
-    public ArrayList getRecipeDetails() {
+    public String getRecipeDetails() {
         return RecipeDetails;
     }
 
-    public void setRecipeDetails(ArrayList recipeDetails) {
+    public void setRecipeDetails(String recipeDetails) {
         RecipeDetails = recipeDetails;
     }
 }

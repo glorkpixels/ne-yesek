@@ -43,13 +43,13 @@ public class RecipeFragment extends Fragment {
 
 
     private HomeFragment.OnFragmentInteractionListener mListener;
-
+    String aan = "";
     RecyclerView recipeRecyclerView ;
     RecipeAdapter recipeAdapter ;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference ;
-
     DatabaseReference databaseReference2 ;
+
     List recipeList;
     public RecipeFragment() {
         // Required empty public constructor
@@ -101,7 +101,6 @@ public class RecipeFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-
         // Get List Posts from the database
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -110,19 +109,40 @@ public class RecipeFragment extends Fragment {
 
                 recipeList = new ArrayList<>();
                 for (DataSnapshot postsnap : dataSnapshot.getChildren()) {
-                    System.out.println(postsnap.toString());
+                    //System.out.println(postsnap.toString());
                     Recipe recipe = new Recipe();
                     Map<String, String> map = (Map) postsnap.getValue();
                     recipe.setRecipeKey(postsnap.getKey());
                     recipe.setName(map.get("Name"));
                     recipe.setShortDescription(map.get("ShortDescription"));
                     recipe.setImage(map.get("Image"));
+                   // recipe.setPrepDetails(map.get("PrepDetails"));
+
+                   // recipe.setIngridients(map.get("Ingridients"));
+
+                   databaseReference2 = firebaseDatabase.getReference("Recipe").child(postsnap.getKey()).child("RecipeDetails");
+                    databaseReference2.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot postsnap : dataSnapshot.getChildren()) {
+                                String post = postsnap.getValue(String.class);
+                                System.out.println(post);
+                                aan = post;
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
+                    recipe.setRecipeDetails(aan);
+                   //String prep = map.get("RecipeDetails");
 
                     recipeList.add(recipe);
 
 
                 }
 
+                System.out.println(recipeList.size() + " anan");
                 recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
                 recipeRecyclerView.setAdapter(recipeAdapter);
 

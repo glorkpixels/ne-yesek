@@ -1,6 +1,7 @@
 package com.deu.neyesek.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.deu.neyesek.Activity.RecipeDetailActivity;
 import com.deu.neyesek.Fragments.RecipeFragment;
 
 import com.bumptech.glide.Glide;
@@ -27,19 +29,12 @@ import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHolder> {
 
+
     Context mContext;
-    List<Recipe>mData ;
-    public String recipeID;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
-    DatabaseReference referenceStudent, referenceTeacher;
-    FirebaseUser currentUser;
-    String name;
-    String te;
-    private static final String TAG = "MainActivity";
+    List<Recipe> mData;
 
-
-    public RecipeAdapter(Context mContext, List mData) {
+    // this post adapter gets posts when called and projects it to fragment post fragment
+    public RecipeAdapter(Context mContext, List<Recipe> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -48,12 +43,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        fAuth = FirebaseAuth.getInstance();
-        currentUser = fAuth.getCurrentUser();
-        View row = LayoutInflater.from(mContext).inflate(R.layout.row_recipe_item,parent,false);
+        View row = LayoutInflater.from(mContext).inflate(R.layout.row_recipe_item, parent, false);
         return new MyViewHolder(row);
-
-
     }
 
     @Override
@@ -73,114 +64,35 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
-        TextView tvDesc;
+        TextView tving;
         ImageView imgPost;
-        Button deletecourse;
+        TextView tvDesc;
+        ImageView imgPostProfile;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.row_recipe_title);
-            tvDesc= itemView.findViewById(R.id.row_recipe_description);
+            tvDesc = itemView.findViewById(R.id.row_recipe_description);
             imgPost = itemView.findViewById(R.id.row_recipe_img);
-            deletecourse = itemView.findViewById(R.id.delete_recipe_button);
-/*
-// delete button is bugged so its commented for now
-         //   deletecourse.setVisibility(View.VISIBLE);
-            DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("Teacher/");
-            databaseReference2.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot2) {
-                    for (DataSnapshot postsnap: dataSnapshot2.getChildren()) {
-                        Chat chat = postsnap.getValue(Chat.class);
-
-
-                        if (chat.getUserType().equals("teacher")){
-                            te = chat.getUserType();
-                        }
-                        else{
-                            te = "student";
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                    Log.w(TAG, "Failed to read value.", error.toException());
-                }});
-
-
-            deletecourse.setVisibility(View.VISIBLE);
-                System.out.println(te + " OFFFFFFFFFFFFFFFFFFFFFF");
-            if ("teacher".equals(te))
-              {
-                  deletecourse.setOnClickListener(new View.OnClickListener() {
-                      public void onClick(View v) {
-
-                          final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Course").child(courseID);
-
-                          ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                              @Override
-                              public void onDataChange(DataSnapshot dataSnapshot) {
-                                  for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
-                                      ref.getRef().removeValue();
-                                  }
-                              }
-
-                              @Override
-                              public void onCancelled(DatabaseError databaseError) {
-                                  Log.e(TAG, "onCancelled", databaseError.toException());
-                              }
-                          });
-
-
-
-
-
-
-
-
-                      }
-                  });
-              }
-            else {
-
-                deletecourse.setVisibility(View.INVISIBLE);
-            }
-
-*/
-
-
-
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Intent postDetailActivity = new Intent(mContext, RecipeDetailActivity.class);
                     int position = getAdapterPosition();
-
-                    recipeID = mData.get(position).getRecipeKey();
+                    System.out.println(mData.get(position).getName() + " lol");
+                    postDetailActivity.putExtra("Name", mData.get(position).getName());
+                    postDetailActivity.putExtra("postImage", mData.get(position).getImage());
+                    postDetailActivity.putExtra("description", mData.get(position).getRecipeDetails());
+                    postDetailActivity.putExtra("prepdet", mData.get(position).getPrepDetails());
+                    postDetailActivity.putExtra("postKey", mData.get(position).getRecipeKey());
                     // will fix this later i forgot to add user name to post object
-                    //postDetailActivity.putExtra("userName",mData.get(position).getUsername);
-                    // long timestamp  = (long) mData.get(position).getTimeStamp();
-                    //     postDetailActivity.putExtra("postDate",timestamp) ;
-                    Bundle bundle = new Bundle();
-                    bundle.putString("recipeID",recipeID); // Put anything what you want
+                    postDetailActivity.putExtra("userId", mData.get(position).getIngridients());
 
-                    RecipeFragment fragment2 = new RecipeFragment();
-                    fragment2.setArguments(bundle);
-
-                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                    activity.getSupportActionBar().setTitle("Recipes");
-
-                   activity.getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.container, fragment2)
-                            .commit();
-
-
-
+                    mContext.startActivity(postDetailActivity);
+                    // if any post clicked we call post detail activity to show of post details and comments of it
 
                 }
             });
