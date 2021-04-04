@@ -79,27 +79,16 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-*/
 
 
-        Recipe = getView().findViewById(R.id.recipe);
-        Menus = getView().findViewById(R.id.menus);
-        Cellar = getView().findViewById(R.id.cellar);
-        ShopList = getView().findViewById(R.id.shoppinglist);
-        Recommend = getView().findViewById(R.id.recommend);
-        //set a onclick listener for when the button gets clicked
-        //Start new list activity
-        Recipe.setOnClickListener(v -> {
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new RecipeFragment()).commit();
-        });
+
+
 
     }
 
@@ -117,8 +106,20 @@ public class HomeFragment extends Fragment {
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
-            System.out.println(uri);
+            Recipe = getView().findViewById(R.id.recipe);
+            Menus = getView().findViewById(R.id.menus);
+            Cellar = getView().findViewById(R.id.cellar);
+            ShopList = getView().findViewById(R.id.shoppinglist);
+            Recommend = getView().findViewById(R.id.recommend);
+            //set a onclick listener for when the button gets clicked
+            //Start new list activity
+            Recipe.setOnClickListener(v -> {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new RecipeFragment()).commit();
+            });
 
+            System.out.println("fuck" + uri);
         }
     }
 

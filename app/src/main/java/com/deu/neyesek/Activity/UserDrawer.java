@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.deu.neyesek.Fragments.HomeFragment;
+import com.deu.neyesek.Fragments.RecipeFragment;
 import com.deu.neyesek.R;
 import com.firebase.ui.auth.data.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -64,7 +65,7 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        HomeFragment.OnFragmentInteractionListener mListener;
         setContentView(R.layout.activity_user_drawer);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -132,6 +133,10 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
             getSupportActionBar().setTitle("Home");
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
 
+        }
+        else  if (id == R.id.RecipeFragment){
+            getSupportActionBar().setTitle("Recipes");
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new RecipeFragment()).commit();
         }
         else if (id == R.id.Signout) {
             FirebaseAuth.getInstance().signOut();

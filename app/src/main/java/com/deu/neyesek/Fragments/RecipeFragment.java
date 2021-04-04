@@ -2,13 +2,28 @@ package com.deu.neyesek.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.deu.neyesek.Adapters.RecipeAdapter;
+import com.deu.neyesek.Models.Recipe;
 import com.deu.neyesek.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +41,16 @@ public class RecipeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
+    private HomeFragment.OnFragmentInteractionListener mListener;
+
+    RecyclerView recipeRecyclerView ;
+    RecipeAdapter recipeAdapter ;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference ;
+
+    DatabaseReference databaseReference2 ;
+    List recipeList;
     public RecipeFragment() {
         // Required empty public constructor
     }
@@ -61,6 +86,56 @@ public class RecipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recipe, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_recipe, container, false);
+        recipeRecyclerView  = fragmentView.findViewById(R.id.recipeRV);
+        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recipeRecyclerView.setHasFixedSize(true);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        databaseReference = firebaseDatabase.getReference("Recipe");
+
+
+        return fragmentView;
+    }
+
+    public void onStart() {
+        super.onStart();
+
+
+        // Get List Posts from the database
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                recipeList = new ArrayList<>();
+                for (DataSnapshot postsnap : dataSnapshot.getChildren()) {
+                    System.out.println(postsnap.toString());
+                    Recipe recipe = new Recipe();
+                    Map<String, String> map = (Map) postsnap.getValue();
+                    recipe.setRecipeKey(postsnap.getKey());
+                    recipe.setName(map.get("Name"));
+                    recipe.setShortDescription(map.get("ShortDescription"));
+                    recipe.setImage(map.get("Image"));
+
+                    recipeList.add(recipe);
+
+
+                }
+
+                recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
+                recipeRecyclerView.setAdapter(recipeAdapter);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
     }
 }
