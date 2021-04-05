@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.deu.neyesek.Adapters.CommentAdapter;
+import com.deu.neyesek.Adapters.RecipeAdapter;
 import com.deu.neyesek.Models.Comment;
+import com.deu.neyesek.Models.Recipe;
 import com.deu.neyesek.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
@@ -51,6 +54,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     CommentAdapter commentAdapter;
 
 
+    String postxd ="";
     List<Comment> listComment;
 
 
@@ -94,50 +98,74 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         String postTitle = getIntent().getExtras().getString("Name");
         txtPostTitle.setText(postTitle);
-        String postDescription = getIntent().getExtras().getString("Desc");
 
-        PostKey = getIntent().getExtras().getString("postKey");
+        String postDescription = getIntent().getExtras().getString("xd");
         txtPostDesc.setText(postDescription);
-
-
-        btnAddComment.setOnClickListener(new View.OnClickListener() {
+        PostKey = "";
+        PostKey = getIntent().getExtras().getString("postKey");
+        //System.out.println(PostKey + "keybumu");
+        DatabaseReference databaseReference3 = firebaseDatabase.getReference("Recipe");
+        postxd = "";
+        databaseReference3.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                btnAddComment.setVisibility(View.INVISIBLE);
-                DatabaseReference commentReference = firebaseDatabase.getReference(COMMENT_KEY).child(PostKey).push();
-                // database reference of postkey under comment branch
-                String comment_content = editTextComment.getText().toString();
-                String uid = firebaseUser.getUid();
-                String uname = firebaseUser.getEmail();
-                String uimg = "";
-                Comment comment = new Comment(comment_content,uid,uimg,uname);
+                for (DataSnapshot postsnap : dataSnapshot.getChildren()) {
 
-                // comment adding listener from sent button
-                commentReference.setValue(comment).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        showMessage("comment added");
-                        editTextComment.setText("");
-                        btnAddComment.setVisibility(View.VISIBLE);
+                    if(postsnap.getKey().equals(PostKey)){
+                        //System.out.println(postsnap.getKey() + "evet bu");
+                        Recipe recipe = postsnap.getValue(Recipe.class);
+                        //String prep = map.get("RecipeDetails");
+                        postxd = recipe.getRecipeDetails();
+                        txtPostPrep.setText(postxd);
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        showMessage("failed to add comment : "+e.getMessage());
-                    }
-                });
 
 
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
 
 
 
+        btnAddComment.setOnClickListener(view -> {
+
+            btnAddComment.setVisibility(View.INVISIBLE);
+            DatabaseReference commentReference = firebaseDatabase.getReference(COMMENT_KEY).child(PostKey).push();
+            // database reference of postkey under comment branch
+            String comment_content = editTextComment.getText().toString();
+            String uid = firebaseUser.getUid();
+            String uname = firebaseUser.getEmail();
+            String uimg = "";
+            Comment comment = new Comment(comment_content,uid,uimg,uname);
+
+            // comment adding listener from sent button
+            commentReference.setValue(comment).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    showMessage("comment added");
+                    editTextComment.setText("");
+                    btnAddComment.setVisibility(View.VISIBLE);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    showMessage("failed to add comment : "+e.getMessage());
+                }
+            });
+        });
+
+
+
 // loading post infos user names
         // ini Recyclerview Comment
-        //iniRvComment();
+        iniRvComment();
 
 
     }

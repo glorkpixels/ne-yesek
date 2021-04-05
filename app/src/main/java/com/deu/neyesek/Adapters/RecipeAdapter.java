@@ -82,10 +82,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
                 public void onClick(View view) {
                     Intent postDetailActivity = new Intent(mContext, RecipeDetailActivity.class);
                     int position = getAdapterPosition();
-                    System.out.println(mData.get(position).getName() + " lol");
+                    System.out.println(mData.get(position).getName() + mData.get(position).getRecipeKey() + " lol");
                     postDetailActivity.putExtra("Name", mData.get(position).getName());
                     postDetailActivity.putExtra("Image", mData.get(position).getImage());
-                    postDetailActivity.putExtra("Desc", mData.get(position).getRecipeDetails());
+                    postDetailActivity.putExtra("xd", mData.get(position).getIngridients());
+                    postDetailActivity.putExtra("sdd", mData.get(position).getRecipeDetails());
+                    //System.out.println(mData.get(position).getRecipeDetails() + " lol");
                     //postDetailActivity.putExtra("prepdet", mData.get(position).getPrepDetails());
                     postDetailActivity.putExtra("postKey", mData.get(position).getRecipeKey());
                     // will fix this later i forgot to add user name to post object

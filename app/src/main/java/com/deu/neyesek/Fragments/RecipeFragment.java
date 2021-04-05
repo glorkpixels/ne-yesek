@@ -113,27 +113,23 @@ public class RecipeFragment extends Fragment {
                     Recipe recipe = new Recipe();
                     Map<String, String> map = (Map) postsnap.getValue();
                     recipe.setRecipeKey(postsnap.getKey());
+
                     recipe.setName(map.get("Name"));
                     recipe.setShortDescription(map.get("ShortDescription"));
                     recipe.setImage(map.get("Image"));
-                   // recipe.setPrepDetails(map.get("PrepDetails"));
+                    recipe.setPrepDetails(map.get("PrepDetails"));
+                    recipe.setIngridients(map.get("Ingridients"));
 
-                   // recipe.setIngridients(map.get("Ingridients"));
+                    recipe.setCategoryBread(map.get("CategoryBread"));
+                    recipe.setCuisine(map.get("Cuisine"));
+                    recipe.setMainCategory(map.get("Category"));
 
-                   databaseReference2 = firebaseDatabase.getReference("Recipe").child(postsnap.getKey()).child("RecipeDetails");
-                    databaseReference2.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot postsnap : dataSnapshot.getChildren()) {
-                                String post = postsnap.getValue(String.class);
-                                System.out.println(post);
-                                aan = post;
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                        }
-                    });
+                    recipe.setIngridientNames(map.get("IngridientNames"));
+                    recipe.setKeywords(map.get("Keywords"));
+                    recipe.setRecipeDetails(map.get("RecipeDetails"));
+                    //System.out.println(map.get("RecipeDetails"));
+
+
                     recipe.setRecipeDetails(aan);
                    //String prep = map.get("RecipeDetails");
 
@@ -142,7 +138,6 @@ public class RecipeFragment extends Fragment {
 
                 }
 
-                System.out.println(recipeList.size() + " anan");
                 recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
                 recipeRecyclerView.setAdapter(recipeAdapter);
 
