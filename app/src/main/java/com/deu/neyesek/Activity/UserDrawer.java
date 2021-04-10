@@ -58,6 +58,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class UserDrawer extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private static final String TAG = "StudentDrawer";
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
     String name;
@@ -117,12 +118,7 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
             super.onBackPressed();
         }
     }
-    public void updateNavHeader() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-
-        // drawer user credentials setting from database pulling current users info
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -155,5 +151,19 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
         drawer.closeDrawer(GravityCompat.START);
         return true;
 
+    }
+
+    public void updateNavHeader() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        final TextView student_name = headerView.findViewById(R.id.username);
+        TextView student_mail = headerView.findViewById(R.id.useremail);
+        ImageView student_photo = headerView.findViewById(R.id.userimage);
+        //DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User").child(mAuth.getCurrentUser().ge);
+
+       student_name.setText("MEHMET USLU");
+       student_mail.setText("mehmet.uslu96@gmail.com");
+
+        // drawer user credentials setting from database pulling current users info
     }
 }

@@ -51,6 +51,8 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    public ImageButton recipeButton;
+
     private HomeFragment.OnFragmentInteractionListener mListener;
 
     public HomeFragment() {
@@ -87,17 +89,46 @@ public class HomeFragment extends Fragment {
 
 
 
-
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_home, container, false);
+        Recipe = fragmentView.findViewById(R.id.recipe);
 
+        Recipe.setOnClickListener(v -> {
+            View fragmentView2 = inflater.inflate(R.layout.fragment_recipe, container, false);
+            getParentFragmentManager().beginTransaction().replace(R.id.container, new RecipeFragment() ).commit();
+        });
 
+        Menus = fragmentView.findViewById(R.id.menus);
+
+        Menus.setOnClickListener(v -> {
+            View fragmentView2 = inflater.inflate(R.layout.fragment_menu, container, false);
+            getParentFragmentManager().beginTransaction().replace(R.id.container, new MenuFragment() ).commit();
+        });
+
+        Cellar = fragmentView.findViewById(R.id.cellar);
+
+        Cellar.setOnClickListener(v -> {
+            View fragmentView2 = inflater.inflate(R.layout.fragment_cellar, container, false);
+            getParentFragmentManager().beginTransaction().replace(R.id.container, new CellarFragment() ).commit();
+        });
+
+        ShopList = fragmentView.findViewById(R.id.shoppinglist);
+
+        ShopList.setOnClickListener(v -> {
+            View fragmentView2 = inflater.inflate(R.layout.fragment_shoppinglist, container, false);
+            getParentFragmentManager().beginTransaction().replace(R.id.container, new ShoppinglistFragment() ).commit();
+        });
+
+        Recommend = fragmentView.findViewById(R.id.recommend);
+
+        Recommend.setOnClickListener(v -> {
+            View fragmentView2 = inflater.inflate(R.layout.fragment_recommendation, container, false);
+            getParentFragmentManager().beginTransaction().replace(R.id.container, new RecommendationFragment() ).commit();
+        });
 
         return fragmentView ;
     }
@@ -113,13 +144,7 @@ public class HomeFragment extends Fragment {
             Recommend = getView().findViewById(R.id.recommend);
             //set a onclick listener for when the button gets clicked
             //Start new list activity
-            Recipe.setOnClickListener(v -> {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new RecipeFragment()).commit();
-            });
 
-            System.out.println("fuck" + uri);
         }
     }
 
