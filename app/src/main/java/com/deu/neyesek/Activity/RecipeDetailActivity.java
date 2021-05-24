@@ -6,7 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,18 +46,20 @@ import java.util.Map;
 public class RecipeDetailActivity extends AppCompatActivity {
 
     ImageView imgPost,imgCurrentUser;
-    TextView txtPostDesc,txtPostDateName,txtPostTitle,txtPostPrep;
+    TextView txtPostDesc,txtPostDateName,txtPostTitle,txtPostPrep ,txtPostShorts,txtPostDateName2;
     EditText editTextComment;
     Button btnAddComment;
     String PostKey;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
+    CompoundButton buttonFavorite;
 
+    CompoundButton buttonShop;
     FirebaseDatabase firebaseDatabase;
     RecyclerView RvComment;
     CommentAdapter commentAdapter;
 
-
+    String postsh ="";
     String postxd ="";
     List<Comment> listComment;
 
@@ -80,14 +86,17 @@ public class RecipeDetailActivity extends AppCompatActivity {
         imgCurrentUser = findViewById(R.id.recipe_detail_currentuser_img);
 
         txtPostTitle = findViewById(R.id.recipe_detail_title);
+
         txtPostDesc = findViewById(R.id.recipe_detail_desc);
         txtPostDateName = findViewById(R.id.recipe_detail_date_name);
+        txtPostDateName2 = findViewById(R.id.recipe_detail_date_name2);
         txtPostPrep = findViewById(R.id.recipe_prep_steps);
+        txtPostShorts = findViewById(R.id.recipe_prep_detail);
 
         editTextComment = findViewById(R.id.recipe_detail_comment);
         btnAddComment = findViewById(R.id.recipe_detail_add_comment_btn);
-
-
+        buttonFavorite = findViewById(R.id.button_favorite);
+        buttonShop = findViewById(R.id.button_shop);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -98,7 +107,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         String postTitle = getIntent().getExtras().getString("Name");
         txtPostTitle.setText(postTitle);
+        txtPostDateName.setText("Add to favorites ");
 
+        txtPostDateName2.setText("Add to cart ");
         String postDescription = getIntent().getExtras().getString("xd");
         txtPostDesc.setText(postDescription);
         PostKey = "";
@@ -106,6 +117,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         //System.out.println(PostKey + "keybumu");
         DatabaseReference databaseReference3 = firebaseDatabase.getReference("Recipe");
         postxd = "";
+        postsh = "";
         databaseReference3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -117,11 +129,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
                         Recipe recipe = postsnap.getValue(Recipe.class);
                         //String prep = map.get("RecipeDetails");
                         postxd = recipe.getRecipeDetails();
+                        postsh += " MIKTAR       HAZIRLIK       PİŞİRME \n |   ";
+                        postsh += recipe.getPrepDetails();
+
+                        postsh = postsh.replace(";", "   |    ");
+                        txtPostShorts.setText(postsh);
                         txtPostPrep.setText(postxd);
                     }
-
-
-
                 }
 
             }
@@ -130,6 +144,26 @@ public class RecipeDetailActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+        });
+
+
+
+        buttonFavorite.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            //animation
+            ScaleAnimation scaleAnimation = new ScaleAnimation(0.7f, 1.0f, 0.7f, 1.0f, Animation.RELATIVE_TO_SELF, 0.7f, Animation.RELATIVE_TO_SELF, 0.7f);
+            scaleAnimation.setDuration(500);
+            BounceInterpolator bounceInterpolator = new BounceInterpolator();
+            scaleAnimation.setInterpolator(bounceInterpolator);
+            compoundButton.startAnimation(scaleAnimation);
+        });
+
+        buttonShop.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            //animation
+            ScaleAnimation scaleAnimation = new ScaleAnimation(0.7f, 1.0f, 0.7f, 1.0f, Animation.RELATIVE_TO_SELF, 0.7f, Animation.RELATIVE_TO_SELF, 0.7f);
+            scaleAnimation.setDuration(500);
+            BounceInterpolator bounceInterpolator = new BounceInterpolator();
+            scaleAnimation.setInterpolator(bounceInterpolator);
+            compoundButton.startAnimation(scaleAnimation);
         });
 
 
@@ -209,6 +243,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
 
     }
+
 
 
     private String timestampToString(long time) {

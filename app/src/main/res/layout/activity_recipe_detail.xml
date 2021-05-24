@@ -9,8 +9,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EDE8E8">
+        android:background="#000000">
 
+
+        <TextView
+            android:id="@+id/recipe_detail_date_name2"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="236dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2"
+            tools:text="Add to favorite " />
 
         <ImageView
             android:id="@+id/recipe_detail_img"
@@ -28,67 +41,136 @@
 
         <TextView
 
-            android:id="@+id/recipe_detail_title"
+            android:id="@+id/recipe_prep_detail"
             android:layout_width="385dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:lineSpacingExtra="4dp"
-            android:text="TextView"
-            app:autoSizeTextType="uniform"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
+            android:text="details"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
             android:textStyle="bold"
+            app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_img" />
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
         <View
-            android:background="#2e2e2e"
             android:id="@+id/view"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            android:textColor="@android:color/white"
+            android:background="#2e2e2e"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipe_detail_title" />
+
         <TextView
-            android:textSize="12sp"
-            android:id="@+id/recipe_detail_date_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
+
+            android:id="@+id/recipe_detail_title"
+            android:layout_width="385dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="TextView"
+            android:lineSpacingExtra="4dp"
+            android:text="Title"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            tools:text="18 jan 2018 | by Arun Larrson " />
+            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_img" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#2e2e2e"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_prep_detail" />
+
+        <ToggleButton
+            android:id="@+id/button_favorite"
+            android:layout_width="56dp"
+            android:layout_height="57dp"
+            android:background="@drawable/button_fav"
+            android:checked="false"
+            android:text=""
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintBottom_toTopOf="@+id/malzemeler"
+            app:layout_constraintEnd_toStartOf="@+id/recipe_detail_date_name"
+            app:layout_constraintHorizontal_bias="0.952"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_prep_detail"
+            app:layout_constraintVertical_bias="0.657" />
+
+        <ToggleButton
+            android:id="@+id/button_shop"
+            android:layout_width="56dp"
+            android:layout_height="57dp"
+            android:background="@drawable/button_cart"
+            android:checked="false"
+            android:text=""
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintBottom_toTopOf="@+id/malzemeler"
+            app:layout_constraintEnd_toStartOf="@+id/recipe_detail_date_name"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_prep_detail"
+            app:layout_constraintVertical_bias="0.652" />
+
+        <TextView
+            android:id="@+id/recipe_detail_date_name"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="28dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2"
+            tools:text="Add to favorite " />
 
         <TextView
 
-            android:id="@+id/recipe_detail_desc"
+            android:id="@+id/malzemeler"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:lineSpacingExtra="8dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,rum eiusmod tempor incididunt ut labore et dolore magna aliqua"
-            android:textColor="#373737"
-            android:textIsSelectable="true"
+            android:gravity="center"
+            android:lineSpacingExtra="36sp"
+            android:linksClickable="false"
+            android:text="MALZEMELER"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="@android:color/white"
+            android:textColorHighlight="#712929"
+            android:textIsSelectable="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -97,73 +179,122 @@
 
         <TextView
 
-            android:id="@+id/recipe_prep_steps"
+            android:id="@+id/recipe_detail_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="16dp"
+
+            android:lineSpacingExtra="8dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,rum eiusmod tempor incididunt ut labore et dolore magna aliqua"
+            android:textColor="@android:color/white"
+            android:textIsSelectable="true"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/malzemeler" />
+
+        <TextView
+
+            android:id="@+id/HAZIRLIK"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="36sp"
+            android:linksClickable="false"
+            android:text="HAZIRLANIŞI"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="@android:color/white"
+            android:textColorHighlight="#712929"
+            android:textIsSelectable="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_desc" />
+
+        <TextView
+
+            android:id="@+id/recipe_prep_steps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:autoSizeMaxTextSize="100sp"
             android:autoSizeMinTextSize="12sp"
             android:autoSizeStepGranularity="2sp"
             android:lineSpacingExtra="8dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,rum eiusmod tempor incididunt ut labore et dolore magna aliqua"
-            android:textColor="#373737"
+            android:textColor="@android:color/white"
             android:textIsSelectable="true"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_desc" />
+            app:layout_constraintTop_toBottomOf="@+id/HAZIRLIK" />
 
         <EditText
 
             android:id="@+id/recipe_detail_comment"
-            android:layout_width="wrap_content"
+            android:layout_width="246dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@drawable/edittext_button_style_rounded"
             android:ems="10"
             android:hint="Write Comment"
-            app:autoSizeTextType="uniform"
             android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="#000000"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="@+id/recipe_detail_currentuser_img"
             app:layout_constraintStart_toEndOf="@+id/recipe_detail_currentuser_img"
             app:layout_constraintTop_toTopOf="@+id/recipe_detail_currentuser_img"
             app:layout_constraintVertical_bias="0.0" />
 
+
         <Button
             android:id="@+id/recipe_detail_add_comment_btn"
-            android:layout_width="80dp"
-            android:layout_height="47dp"
+            android:layout_width="83dp"
+            android:layout_height="54dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/edittext_button_style_rounded"
+            android:scrollbarThumbHorizontal="@drawable/edittext_button_style_rounded"
             android:text="Add"
+            android:textColorHighlight="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/recipe_detail_comment"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/recipe_detail_comment"
             app:layout_constraintTop_toTopOf="@+id/recipe_detail_comment"
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/recipe_detail_currentuser_img"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="32dp"
+            android:layout_width="47dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:src="@drawable/person"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipe_prep_steps" />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_comment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="100dp"
+            android:layout_width="411dp"
+            android:layout_height="211dp"
+            android:layout_marginTop="28dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipe_detail_comment" />
 
