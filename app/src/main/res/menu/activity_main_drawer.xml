@@ -15,9 +15,15 @@
             android:title="Recipes" />
 
         <item
+            android:id="@+id/IngredientFragment"
+            android:icon="@drawable/tomato"
+            android:title="Ingredients" />
+
+        <item
             android:id="@+id/MenuFragment"
             android:icon="@drawable/menu"
             android:title="Menus" />
+
 
         <item
             android:id="@+id/Signout"

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.deu.neyesek.Fragments.HomeFragment;
+import com.deu.neyesek.Fragments.IngredientFragment;
 import com.deu.neyesek.Fragments.RecipeFragment;
 import com.deu.neyesek.R;
 import com.firebase.ui.auth.data.model.User;
@@ -133,6 +134,10 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
         else  if (id == R.id.RecipeFragment){
             getSupportActionBar().setTitle("Recipes");
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new RecipeFragment()).commit();
+        }
+        else  if (id == R.id.IngredientFragment){
+            getSupportActionBar().setTitle("Ingredients");
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new IngredientFragment()).commit();
         }
         else if (id == R.id.Signout) {
             FirebaseAuth.getInstance().signOut();
