@@ -26,6 +26,7 @@ import com.deu.neyesek.Adapters.CommentAdapter;
 import com.deu.neyesek.Adapters.RecipeAdapter;
 import com.deu.neyesek.Models.Comment;
 import com.deu.neyesek.Models.Recipe;
+import com.deu.neyesek.Models.mList;
 import com.deu.neyesek.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -171,9 +172,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                DatabaseReference myRef = firebaseDatabase.getReference("UserFavorites").child(firebaseUser.getUid()).child("Meals").child(PostKey).push();
+                DatabaseReference myRef = firebaseDatabase.getReference("UserFavorites").child(firebaseUser.getUid()).child("Meals").push();
 
-                myRef.setValue(PostKey).addOnSuccessListener(new OnSuccessListener<Void>() {
+                mList meal = new mList();
+                meal.setcKey(PostKey);
+                myRef.setValue(meal).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                     }
