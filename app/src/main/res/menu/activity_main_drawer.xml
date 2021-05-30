@@ -24,6 +24,10 @@
             android:icon="@drawable/menu"
             android:title="Menus" />
 
+        <item
+            android:id="@+id/FavFragment"
+            android:icon="@drawable/faviconn"
+            android:title="Favorites" />
 
         <item
             android:id="@+id/Signout"

@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.deu.neyesek.Fragments.FavoriteFragment;
 import com.deu.neyesek.Fragments.HomeFragment;
 import com.deu.neyesek.Fragments.IngredientFragment;
 import com.deu.neyesek.Fragments.RecipeFragment;
@@ -138,6 +139,10 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
         else  if (id == R.id.IngredientFragment){
             getSupportActionBar().setTitle("Ingredients");
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new IngredientFragment()).commit();
+        }
+        else if(id == R.id.FavFragment){
+            getSupportActionBar().setTitle("Favorites");
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new FavoriteFragment()).commit();
         }
         else if (id == R.id.Signout) {
             FirebaseAuth.getInstance().signOut();

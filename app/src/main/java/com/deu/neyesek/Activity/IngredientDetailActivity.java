@@ -60,6 +60,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
     String postxd ="";
     List<Comment> listComment;
 
+    FirebaseUser currentUser;
 
     static String COMMENT_KEY = "Comment" ;
     String NAME ="";
@@ -71,7 +72,8 @@ public class IngredientDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
 
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
 // let's set the statue bar to transparent
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -152,6 +154,8 @@ public class IngredientDetailActivity extends AppCompatActivity {
             BounceInterpolator bounceInterpolator = new BounceInterpolator();
             scaleAnimation.setInterpolator(bounceInterpolator);
             compoundButton.startAnimation(scaleAnimation);
+            DatabaseReference databaseReference4 = firebaseDatabase.getReference("UserFavorites").child(currentUser.getUid());
+
         });
 
         buttonShop.setOnCheckedChangeListener((compoundButton, isChecked) -> {

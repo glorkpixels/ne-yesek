@@ -152,7 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
                         currentUser.child("Height").setValue(height);
                         currentUser.child("Weight").setValue(weight);
                         currentUser.child("Gender").setValue(gender);
-                        updateUserInfo( name ,pickedImgUri,fAuth.getCurrentUser()); updateUserInfo( name ,pickedImgUri,fAuth.getCurrentUser());
+                        updateUserInfo( name ,pickedImgUri,fAuth.getCurrentUser());
                         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                         Toast.makeText(RegisterActivity.this, "Your account has been created..", Toast.LENGTH_LONG).show();
                         updateUI();

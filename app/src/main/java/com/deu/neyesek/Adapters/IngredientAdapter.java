@@ -18,6 +18,7 @@ import com.deu.neyesek.Activity.RecipeDetailActivity;
 import com.deu.neyesek.Fragments.RecipeFragment;
 
 import com.bumptech.glide.Glide;
+import com.deu.neyesek.Models.Ingredient;
 import com.deu.neyesek.Models.Recipe;
 import com.deu.neyesek.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,10 +32,10 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
 
 
     Context mContext;
-    List<Recipe> mData;
+    List<Ingredient> mData;
 
     // this post adapter gets posts when called and projects it to fragment post fragment
-    public IngredientAdapter(Context mContext, List<Recipe> mData) {
+    public IngredientAdapter(Context mContext, List<Ingredient> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -49,9 +50,9 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tvTitle.setText(mData.get(position).getName());
-        holder.tvDesc.setText(mData.get(position).getShortDescription());
-        Glide.with(mContext).load(mData.get(position).getImage()).into(holder.imgPost);
+        holder.tvTitle.setText(mData.get(position).getTurkishName());
+        holder.tvDesc.setText(mData.get(position).getCalorie());
+        Glide.with(mContext).load(mData.get(position).getMainImage()).into(holder.imgPost);
     }
 
 
@@ -64,10 +65,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
-        TextView tving;
         ImageView imgPost;
         TextView tvDesc;
-        ImageView imgPostProfile;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -82,7 +81,9 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
                 public void onClick(View view) {
                     Intent IngredientDetailActivity = new Intent(mContext, IngredientDetailActivity.class);
                     int position = getAdapterPosition();
-                    System.out.println(mData.get(position).getName() + mData.get(position).getRecipeKey() + " lol");
+                    System.out.println( mData.get(position).getIngredientKey() + " lol");
+
+                    /*
                     IngredientDetailActivity.putExtra("Name", mData.get(position).getName());
                     IngredientDetailActivity.putExtra("Image", mData.get(position).getImage());
                     IngredientDetailActivity.putExtra("xd", mData.get(position).getIngridients());
@@ -93,6 +94,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
                     // will fix this later i forgot to add user name to post object
                     // postDetailActivity.putExtra("userId", mData.get(position).getIngridients());
 
+
+                    */
                     mContext.startActivity(IngredientDetailActivity);
                     // if any post clicked we call post detail activity to show of post details and comments of it
 

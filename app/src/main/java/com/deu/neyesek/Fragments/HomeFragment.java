@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment {
     ImageButton ShopList;
     ImageButton Recommend;
 
+
     // putting courses on view to show to student classes that enrolled by course code on main screen
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

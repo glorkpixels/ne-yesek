@@ -45,6 +45,7 @@ import java.util.Map;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
+    FirebaseUser currentUser;
     ImageView imgPost,imgCurrentUser;
     TextView txtPostDesc,txtPostDateName,txtPostTitle,txtPostPrep ,txtPostShorts,txtPostDateName2;
     EditText editTextComment;
@@ -59,6 +60,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
     RecyclerView RvComment;
     CommentAdapter commentAdapter;
 
+
+    String ingredientNames;
     String postsh ="";
     String postxd ="";
     List<Comment> listComment;
@@ -73,7 +76,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
 // let's set the statue bar to transparent
         Window w = getWindow();
@@ -135,6 +139,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
                         postsh = postsh.replace(";", "   |    ");
                         txtPostShorts.setText(postsh);
                         txtPostPrep.setText(postxd);
+
+                        ingredientNames = recipe.getIngridientNames();
+
                     }
                 }
 
@@ -155,6 +162,54 @@ public class RecipeDetailActivity extends AppCompatActivity {
             BounceInterpolator bounceInterpolator = new BounceInterpolator();
             scaleAnimation.setInterpolator(bounceInterpolator);
             compoundButton.startAnimation(scaleAnimation);
+
+
+
+        });
+
+        buttonFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatabaseReference myRef = firebaseDatabase.getReference("UserFavorites").child(firebaseUser.getUid()).child("Meals").child(PostKey).push();
+
+                myRef.setValue(PostKey).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    }
+                });
+
+
+                DatabaseReference databaseReference4 = firebaseDatabase.getReference("UserFavorites").child("Meals").child(firebaseUser.getUid());
+
+                /*
+                databaseReference4.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        if (dataSnapshot.child(PostKey).exists()) {
+                            databaseReference4.child(PostKey).getRef().removeValue();
+                        }
+
+                        else{
+                            databaseReference4.child(PostKey);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                */
+
+
+            }
         });
 
         buttonShop.setOnCheckedChangeListener((compoundButton, isChecked) -> {
@@ -164,6 +219,29 @@ public class RecipeDetailActivity extends AppCompatActivity {
             BounceInterpolator bounceInterpolator = new BounceInterpolator();
             scaleAnimation.setInterpolator(bounceInterpolator);
             compoundButton.startAnimation(scaleAnimation);
+        });
+
+        buttonShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatabaseReference myRef = firebaseDatabase.getReference("UserShoppingList").child(firebaseUser.getUid()).push();
+
+                ingredientNames.replace(";"," \n");
+
+                    myRef.setValue(ingredientNames).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                        }
+                    });
+
+
+            }
         });
 
 

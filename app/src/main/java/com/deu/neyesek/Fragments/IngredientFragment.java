@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deu.neyesek.Adapters.IngredientAdapter;
 import com.deu.neyesek.Adapters.RecipeAdapter;
+import com.deu.neyesek.Models.Ingredient;
 import com.deu.neyesek.Models.Recipe;
 import com.deu.neyesek.R;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +46,7 @@ public class IngredientFragment extends Fragment {
     private HomeFragment.OnFragmentInteractionListener mListener;
     String aan = "";
     RecyclerView ingredientRecyclerView ;
-    IngredientAdapter ingredientadapter ;
+    IngredientAdapter ingredientAdapter ;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference ;
     DatabaseReference databaseReference2 ;
@@ -91,7 +93,7 @@ public class IngredientFragment extends Fragment {
         ingredientRecyclerView.setHasFixedSize(true);
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        databaseReference = firebaseDatabase.getReference("Ingredients");
+        databaseReference = firebaseDatabase.getReference("Ingridients");
 
 
         return fragmentView;
@@ -109,8 +111,14 @@ public class IngredientFragment extends Fragment {
                 ingredientlist = new ArrayList<>();
                 for (DataSnapshot postsnap : dataSnapshot.getChildren()) {
                     //System.out.println(postsnap.toString());
-                    // Recipe recipe = new Recipe();
+                    Ingredient ingredient = new Ingredient();
                     Map<String, String> map = (Map) postsnap.getValue();
+                    ingredient.setIngredientKey(postsnap.getKey());
+                    ingredient.setTurkishName(map.get("Turkish Name"));
+                    ingredient.setMainImage(map.get("Image Header"));
+                    String xx = map.get("Calorie") + " CAL";
+                    ingredient.setCalorie(xx    );
+
                     /*
                     recipe.setRecipeKey(postsnap.getKey());
 
@@ -133,13 +141,13 @@ public class IngredientFragment extends Fragment {
                     recipe.setRecipeDetails(aan);
                    //String prep = map.get("RecipeDetails");
                     */
-                    ingredientlist.add(map);
+                    ingredientlist.add(ingredient);
 
 
                 }
                 System.out.println(ingredientlist);
-                ingredientadapter = new IngredientAdapter(getActivity(), ingredientlist);
-                ingredientRecyclerView.setAdapter(ingredientadapter);
+                ingredientAdapter = new IngredientAdapter(getActivity(), ingredientlist);
+                ingredientRecyclerView.setAdapter(ingredientAdapter);
 
 
             }
