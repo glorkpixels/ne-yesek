@@ -3,62 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:layout_marginBottom="8dp">
-
-
-    <ImageView
-        android:id="@+id/row_ingredient_img"
-        android:layout_width="124dp"
-        android:layout_height="127dp"
-        android:scaleType="centerCrop"
+    android:layout_height="100dp"
+    android:layout_marginBottom="8dp"
+    android:background="#000000">
+    <ToggleButton
+        android:id="@+id/button_favorite_ing"
+        android:layout_width="67dp"
+        android:layout_height="66dp"
+        android:background="@drawable/button_fav"
+        android:checked="false"
+        android:text=""
+        android:textOff=""
+        android:textOn=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintHorizontal_bias="0.982"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:ignore="VectorDrawableCompat" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="125dp"
-        android:layout_height="120dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="@id/row_ingredient_img"
-        app:layout_constraintEnd_toEndOf="@id/row_ingredient_img"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/row_ingredient_img"
-        app:srcCompat="@drawable/black_gradient"
-        tools:ignore="VectorDrawableCompat" />
+        app:layout_constraintVertical_bias="0.47" />
 
     <TextView
         android:id="@+id/row_ingredient_title"
         android:layout_width="245dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="156dp"
-        android:text="TextView"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="40dp"
+        android:text=""
         android:textAllCaps="true"
         android:textColor="#FFFFFF"
-        android:textSize="24dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row_ingredient_img"
-        app:layout_constraintVertical_bias="0.207" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/row_ingredient_description"
         android:layout_width="200dp"
-        android:layout_height="55dp"
-        android:text="TextView"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text=""
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.739"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row_ingredient_img"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintHorizontal_bias="0.227"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

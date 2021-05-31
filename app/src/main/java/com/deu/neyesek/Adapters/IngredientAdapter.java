@@ -5,7 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,10 +24,14 @@ import com.deu.neyesek.Fragments.RecipeFragment;
 import com.bumptech.glide.Glide;
 import com.deu.neyesek.Models.Ingredient;
 import com.deu.neyesek.Models.Recipe;
+import com.deu.neyesek.Models.mList;
 import com.deu.neyesek.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -33,7 +41,10 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
 
     Context mContext;
     List<Ingredient> mData;
-
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    FirebaseDatabase firebaseDatabase;
+    String ingKey;
     // this post adapter gets posts when called and projects it to fragment post fragment
     public IngredientAdapter(Context mContext, List<Ingredient> mData) {
         this.mContext = mContext;
@@ -48,11 +59,47 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
         return new MyViewHolder(row);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tvTitle.setText(mData.get(position).getTurkishName());
         holder.tvDesc.setText(mData.get(position).getCalorie());
-        Glide.with(mContext).load(mData.get(position).getMainImage()).into(holder.imgPost);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        holder.buttonFavorite.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            //animation
+            ScaleAnimation scaleAnimation = new ScaleAnimation(0.7f, 1.0f, 0.7f, 1.0f, Animation.RELATIVE_TO_SELF, 0.7f, Animation.RELATIVE_TO_SELF, 0.7f);
+            scaleAnimation.setDuration(500);
+            BounceInterpolator bounceInterpolator = new BounceInterpolator();
+            scaleAnimation.setInterpolator(bounceInterpolator);
+            compoundButton.startAnimation(scaleAnimation);
+
+
+
+        });
+
+
+        holder.buttonFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatabaseReference databaseReference = firebaseDatabase.getReference("UserFavorites").child(firebaseUser.getUid()).child("Ingredients").push();
+                mList ingre = new mList();
+                ingre.setcKey(mData.get(position).getTurkishName());
+                databaseReference.setValue(ingre).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    }
+                });
+
+            }
+        });
     }
 
 
@@ -67,13 +114,15 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
         TextView tvTitle;
         ImageView imgPost;
         TextView tvDesc;
+        CompoundButton buttonFavorite;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.row_ingredient_title);
             tvDesc = itemView.findViewById(R.id.row_ingredient_description);
-            imgPost = itemView.findViewById(R.id.row_ingredient_img);
+            buttonFavorite = itemView.findViewById(R.id.button_favorite_ing);
+
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

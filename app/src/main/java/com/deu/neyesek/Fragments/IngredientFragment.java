@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,8 @@ import com.deu.neyesek.Adapters.RecipeAdapter;
 import com.deu.neyesek.Models.Ingredient;
 import com.deu.neyesek.Models.Recipe;
 import com.deu.neyesek.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +53,7 @@ public class IngredientFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference ;
     DatabaseReference databaseReference2 ;
+
 
     List ingredientlist;
     public IngredientFragment() {
@@ -89,6 +93,7 @@ public class IngredientFragment extends Fragment {
         // Inflate the layout for this fragment
         View fragmentView = inflater.inflate(R.layout.fragment_ingredient, container, false);
         ingredientRecyclerView  = fragmentView.findViewById(R.id.ingredientRV);
+
         ingredientRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ingredientRecyclerView.setHasFixedSize(true);
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -101,7 +106,7 @@ public class IngredientFragment extends Fragment {
 
     public void onStart() {
         super.onStart();
-
+        final String[] lol = {""};
         // Get List Posts from the database
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -114,10 +119,14 @@ public class IngredientFragment extends Fragment {
                     Ingredient ingredient = new Ingredient();
                     Map<String, String> map = (Map) postsnap.getValue();
                     ingredient.setIngredientKey(postsnap.getKey());
-                    ingredient.setTurkishName(map.get("Turkish Name"));
+                    lol[0] =  map.get("Turkish Name");
+                    lol[0].replace("\n", "");
+                    System.out.println(lol[0]);
+                    ingredient.setTurkishName(map.get("Turkish Name").replace("\n", ""));
                     ingredient.setMainImage(map.get("Image Header"));
                     String xx = map.get("Calorie") + " CAL";
-                    ingredient.setCalorie(xx    );
+                    System.out.println(xx);
+                    ingredient.setCalorie(map.get("Calorie") + " CAL");
 
                     /*
                     recipe.setRecipeKey(postsnap.getKey());
