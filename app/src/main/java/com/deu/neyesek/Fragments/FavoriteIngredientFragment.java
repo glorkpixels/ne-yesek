@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
+import com.deu.neyesek.Adapters.IngredientAdapter;
 import com.deu.neyesek.Adapters.RecipeAdapter;
 import com.deu.neyesek.Models.Ingredient;
 import com.deu.neyesek.Models.Recipe;
@@ -28,27 +28,28 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FavoriteFragment#newInstance} factory method to
+ * Use the {@link FavoriteIngredientFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavoriteFragment extends Fragment {
+public class FavoriteIngredientFragment extends Fragment {
 
     String aan = "";
     RecyclerView recipeRecyclerView ;
-    RecipeAdapter recipeAdapter ;
+    IngredientAdapter recipeAdapter ;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference ;
-    Button IngredientFav;
+
     DatabaseReference databaseReference2 ;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     String temp;
     List<String> recipeIdList;
     List recipeList;
+
+    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -57,7 +58,7 @@ public class FavoriteFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FavoriteFragment() {
+    public FavoriteIngredientFragment() {
         // Required empty public constructor
     }
 
@@ -67,11 +68,11 @@ public class FavoriteFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FavoriteFragment.
+     * @return A new instance of fragment FavoriteIngredientFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FavoriteFragment newInstance(String param1, String param2) {
-        FavoriteFragment fragment = new FavoriteFragment();
+    public static FavoriteIngredientFragment newInstance(String param1, String param2) {
+        FavoriteIngredientFragment fragment = new FavoriteIngredientFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -95,26 +96,19 @@ public class FavoriteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View fragmentView = inflater.inflate(R.layout.fragment_favorite, container, false);
-        recipeRecyclerView  = fragmentView.findViewById(R.id.recipeRV);
-        IngredientFav = fragmentView.findViewById(R.id.favorite_ingredients);
-
-        IngredientFav.setOnClickListener(v -> {
-            View fragmentView2 = inflater.inflate(R.layout.fragment_favorite_ingredient, container, false);
-            getParentFragmentManager().beginTransaction().replace(R.id.container, new FavoriteIngredientFragment() ).commit();
-        });
-
-        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recipeRecyclerView.setHasFixedSize(true);
+        View fragmentView = inflater.inflate(R.layout.fragment_favorite_ingredient, container, false);
+        recipeRecyclerView  = fragmentView.findViewById(R.id.ingredientRV);
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        databaseReference = firebaseDatabase.getReference("UserFavorites").child(firebaseUser.getUid()).child("Meals");
+        databaseReference = firebaseDatabase.getReference("UserFavorites").child(firebaseUser.getUid()).child("Ingredients");
 
-        databaseReference2 = firebaseDatabase.getReference("Recipe");
+        databaseReference2 = firebaseDatabase.getReference("Ingridients");
         temp = "";
         recipeList = new ArrayList<>();
         recipeIdList = new ArrayList<>();
 
+        recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recipeRecyclerView.setHasFixedSize(true);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -147,6 +141,8 @@ public class FavoriteFragment extends Fragment {
 
         System.out.println(temp + "anan");
 
+        final String[] lol = {""};
+
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -155,35 +151,25 @@ public class FavoriteFragment extends Fragment {
                 for (DataSnapshot postsnap : dataSnapshot.getChildren()) {
                     //System.out.println(postsnap.toString());
                     if (recipeIdList.contains(postsnap.getKey())) {
-                        Recipe recipe = new Recipe();
+                        Ingredient ingredient = new Ingredient();
                         Map<String, String> map = (Map) postsnap.getValue();
-                        recipe.setRecipeKey(postsnap.getKey());
-
-                        recipe.setName(map.get("Name"));
-                        recipe.setShortDescription(map.get("ShortDescription"));
-                        recipe.setImage(map.get("Image"));
-                        recipe.setPrepDetails(map.get("PrepDetails"));
-                        recipe.setIngridients(map.get("Ingridients"));
-
-                        recipe.setCategoryBread(map.get("CategoryBread"));
-                        recipe.setCuisine(map.get("Cuisine"));
-                        recipe.setMainCategory(map.get("Category"));
-
-                        recipe.setIngridientNames(map.get("IngridientNames"));
-                        recipe.setKeywords(map.get("Keywords"));
-                        recipe.setRecipeDetails(map.get("RecipeDetails"));
-                        //System.out.println(map.get("RecipeDetails"));
-
-
-                        recipe.setRecipeDetails(aan);
+                        ingredient.setIngredientKey(postsnap.getKey());
+                        lol[0] =  map.get("Turkish Name");
+                        lol[0].replace("\n", "");
+                        System.out.println(lol[0]);
+                        ingredient.setTurkishName(map.get("Turkish Name").replace("\n", ""));
+                        ingredient.setMainImage(map.get("Image Header"));
+                        String xx = map.get("Calorie") + " CAL";
+                        System.out.println(xx);
+                        ingredient.setCalorie(map.get("Calorie") + " CAL");
                         //String prep = map.get("RecipeDetails");
 
-                        recipeList.add(recipe);
+                        recipeList.add(ingredient);
 
                     }
                 }
 
-                recipeAdapter = new RecipeAdapter(getActivity(), recipeList);
+                recipeAdapter = new IngredientAdapter(getActivity(), recipeList);
                 recipeRecyclerView.setAdapter(recipeAdapter);
 
 
@@ -199,14 +185,5 @@ public class FavoriteFragment extends Fragment {
 
 
         return fragmentView;
-    }
-
-    public void onStart() {
-        super.onStart();
-
-        // Get List Posts from the database
-
-
-
     }
 }

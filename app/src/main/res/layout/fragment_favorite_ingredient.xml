@@ -6,21 +6,9 @@
     android:layout_height="wrap_content"
     tools:context=".Fragments.RecipeFragment">
 
-    <Button
-
-        android:id="@+id/favorite_ingredients"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:text="Vısıt Ingredient Favorıtes"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recipeRV"
+        android:id="@+id/ingredientRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
