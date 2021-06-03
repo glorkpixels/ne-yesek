@@ -64,8 +64,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tvTitle.setText(mData.get(position).getTurkishName());
         holder.tvDesc.setText(mData.get(position).getCalorie());
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
+
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         holder.buttonFavorite.setOnCheckedChangeListener((compoundButton, isChecked) -> {

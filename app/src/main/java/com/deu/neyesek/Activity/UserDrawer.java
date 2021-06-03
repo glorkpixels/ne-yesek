@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.deu.neyesek.Fragments.BMIFragment;
 import com.deu.neyesek.Fragments.FavoriteFragment;
 import com.deu.neyesek.Fragments.HomeFragment;
 import com.deu.neyesek.Fragments.IngredientFragment;
@@ -133,8 +134,8 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
 
         }
         else  if (id == R.id.RecipeFragment){
-            getSupportActionBar().setTitle("Recipes");
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new RecipeFragment()).commit();
+            getSupportActionBar().setTitle("BMI");
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new BMIFragment()).commit();
         }
         else  if (id == R.id.IngredientFragment){
             getSupportActionBar().setTitle("Ingredients");
