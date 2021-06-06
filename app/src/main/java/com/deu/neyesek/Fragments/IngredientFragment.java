@@ -128,17 +128,19 @@ public class IngredientFragment extends Fragment {
                     System.out.println(xx);
                     ingredient.setCalorie(map.get("Calorie") + " CAL");
 
+                    System.out.println(map.get("Carbohydrates") + "ofamk");
+                    ingredient.setCarbohydrates(map.get("Carbohydrates"));
+                    ingredient.setCholesterol(map.get("Cholesterol"));
+                    ingredient.setEnglishName(map.get("English Name"));
+                    ingredient.setSugar(map.get("Sugar"));
+                    ingredient.setPotassium(map.get("Potassium"));
+                    ingredient.setFat(map.get("Fat"));
+                    ingredient.setSaturatedFat(map.get("Saturated Fat"));
+                    ingredient.setFiber(map.get("Fiber"));
+                    ingredient.setSodium(map.get("Sodium"));
+                    ingredient.setProtein(map.get("Protein"));
 
-                    ingredient.setCarbohydrates("Carbohydrates");
-                    ingredient.setCholesterol("Cholesterol");
-                    ingredient.setEnglishName("English Name");
-                    ingredient.setSugar("Sugar");
-                    ingredient.setPotassium("Potassium");
-                    ingredient.setFat("Fat");
-                    ingredient.setSaturatedFat("Saturated Fat");
-                    ingredient.setFiber("Fiber");
-                    ingredient.setSodium("Sodium");
-                    ingredient.setProtein("Protein");
+
                     ingredientlist.add(ingredient);
 
 

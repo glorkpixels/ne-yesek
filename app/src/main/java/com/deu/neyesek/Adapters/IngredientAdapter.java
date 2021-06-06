@@ -168,8 +168,11 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
                     IngredientDetailActivity.putExtra("Name", mData.get(position).getTurkishName());
 
                     IngredientDetailActivity.putExtra("descshort", mData.get(position).getShortDesc());
-
-                    IngredientDetailActivity.putExtra("desc", mData.get(position).getStringOfValues());
+                    String lllll = "Carbohydrates: " + mData.get(position).getCarbohydrates() + "\n" + "Protein: " + mData.get(position).getProtein() + "\n" + "Fat: " + mData.get(position).getFat() + "\n" + "Sugar: " + mData.get(position).getSugar() + "\n" + "Sodium: " + mData.get(position).getSodium() + "\n" + "Cholesterol: "
+                            + mData.get(position).getCholesterol() + "\n"
+                            + "SaturatedFat: " + mData.get(position).getSaturatedFat() + "\n"  + "Fiber: " + mData.get(position).getFiber() + "\n" + "Potassium: " + mData.get(position).getPotassium() + "\n"
+                    ;
+                    IngredientDetailActivity.putExtra("desc", lllll);
                     mContext.startActivity(IngredientDetailActivity);
 
                 }

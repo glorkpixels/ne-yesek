@@ -158,10 +158,21 @@ public class FavoriteIngredientFragment extends Fragment {
                         lol[0].replace("\n", "");
                         System.out.println(lol[0]);
                         ingredient.setTurkishName(map.get("Turkish Name").replace("\n", ""));
+                        ingredient.setServingSize(map.get("Serving Size") + " GRAM");
                         String xx = map.get("Calorie") + " CAL";
                         System.out.println(xx);
                         ingredient.setCalorie(map.get("Calorie") + " CAL");
-                        //String prep = map.get("RecipeDetails");
+
+                        ingredient.setCarbohydrates(map.get("Carbohydrates"));
+                        ingredient.setCholesterol(map.get("Cholesterol"));
+                        ingredient.setEnglishName(map.get("English Name"));
+                        ingredient.setSugar(map.get("Sugar"));
+                        ingredient.setPotassium(map.get("Potassium"));
+                        ingredient.setFat(map.get("Fat"));
+                        ingredient.setSaturatedFat(map.get("Saturated Fat"));
+                        ingredient.setFiber(map.get("Fiber"));
+                        ingredient.setSodium(map.get("Sodium"));
+                        ingredient.setProtein(map.get("Protein"));
 
                         recipeList.add(ingredient);
 

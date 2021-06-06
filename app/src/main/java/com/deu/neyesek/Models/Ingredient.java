@@ -150,24 +150,6 @@ public class Ingredient {
 
 
     public String getStringOfValues(){
-/*
-        private String EnglishName;
-        private String IngredientKey;
-        private String TurkishName;
-        private String Calorie;
-        private String ServingSize;
-
-        private String Protein;
-        private String Fat;
-        private String Sugar;
-        private String Sodium;
-
-        private String Carbohydrates;
-        private String Cholesterol;
-        private String SaturatedFat;
-        private String Fiber;
-
-        private String Potassium;*/
         return  "Carbohydrates: " + getCarbohydrates() + "\n" + "Protein: " + getProtein() + "\n" + "Fat: " + getFat() + "\n" + "Sugar: " + getSugar() + "\n" + "Sodium: " + getSodium() + "\n" + "Cholesterol: " + getCholesterol() + "\n"
                 + "SaturatedFat: " + getSaturatedFat() + "\n"  + "Fiber: " + getFiber() + "\n" + "Potassium: " + getPotassium() + "\n"
                 ;
@@ -175,24 +157,7 @@ public class Ingredient {
     }
 
     public String getShortDesc(){
-/*
-        private String EnglishName;
-        private String IngredientKey;
-        private String TurkishName;
-        private String Calorie;
-        private String ServingSize;
 
-        private String Protein;
-        private String Fat;
-        private String Sugar;
-        private String Sodium;
-
-        private String Carbohydrates;
-        private String Cholesterol;
-        private String SaturatedFat;
-        private String Fiber;
-
-        private String Potassium;*/
         return  getCalorie() + "\n" + getServingSize();
 
     }
