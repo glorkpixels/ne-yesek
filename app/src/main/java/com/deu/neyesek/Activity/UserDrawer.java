@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.deu.neyesek.Fragments.BMIFragment;
@@ -62,12 +63,16 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
 
     private AppBarConfiguration mAppBarConfiguration;
     private static final String TAG = "StudentDrawer";
-    FirebaseAuth mAuth;
-    FirebaseUser currentUser;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+
+    SearchView simpleSearchView ;
     String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
         HomeFragment.OnFragmentInteractionListener mListener;
         setContentView(R.layout.activity_user_drawer);
@@ -94,6 +99,8 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
         toggle.syncState();
 
         updateNavHeader();
+
+        simpleSearchView = (SearchView) findViewById(R.id.simpleSearchView);
 
 
         getSupportActionBar().setTitle("Home");
@@ -134,8 +141,8 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
 
         }
         else  if (id == R.id.RecipeFragment){
-            getSupportActionBar().setTitle("BMI");
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new BMIFragment()).commit();
+            getSupportActionBar().setTitle("Recipes");
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new RecipeFragment()).commit();
         }
         else  if (id == R.id.IngredientFragment){
             getSupportActionBar().setTitle("Ingredients");
@@ -170,10 +177,11 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
         final TextView student_name = headerView.findViewById(R.id.username);
         TextView student_mail = headerView.findViewById(R.id.useremail);
         ImageView student_photo = headerView.findViewById(R.id.userimage);
-        //DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User").child(mAuth.getCurrentUser().ge);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User").child(firebaseUser.getUid()).child("Name").getRef();
+        System.out.println(databaseReference.getKey()+ "dneme");
 
-       student_name.setText("MEHMET USLU");
-       student_mail.setText("mehmet.uslu96@gmail.com");
+       student_name.setText(firebaseUser.getDisplayName());
+       student_mail.setText(firebaseUser.getEmail());
 
         // drawer user credentials setting from database pulling current users info
     }

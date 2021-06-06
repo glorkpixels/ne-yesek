@@ -6,10 +6,11 @@
     android:layout_height="100dp"
     android:layout_marginBottom="8dp"
     android:background="#000000">
+
     <ToggleButton
         android:id="@+id/button_favorite_ing"
-        android:layout_width="67dp"
-        android:layout_height="66dp"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
         android:background="@drawable/button_fav"
         android:checked="false"
         android:text=""
@@ -17,17 +18,34 @@
         android:textOn=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintVertical_bias="0.509" />
+
+    <ToggleButton
+        android:id="@+id/button_shop_ing"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/button_cart"
+        android:checked="false"
+        android:text=""
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_favorite_ing"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/row_ingredient_title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.511" />
 
     <TextView
         android:id="@+id/row_ingredient_title"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="258dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="44dp"
         android:text=""
         android:textAllCaps="true"
         android:textColor="#FFFFFF"
@@ -36,18 +54,30 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/row_ingredient_description"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:id="@+id/row_ingredient_serving_size"
+        android:layout_width="162dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="8dp"
         android:text=""
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.227"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/row_ingredient_calorie"
+        android:layout_width="84dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

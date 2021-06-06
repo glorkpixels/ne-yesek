@@ -185,33 +185,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                     }
                 });
-
-
-                DatabaseReference databaseReference4 = firebaseDatabase.getReference("UserFavorites").child("Meals").child(firebaseUser.getUid());
-
-                /*
-                databaseReference4.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        if (dataSnapshot.child(PostKey).exists()) {
-                            databaseReference4.child(PostKey).getRef().removeValue();
-                        }
-
-                        else{
-                            databaseReference4.child(PostKey);
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-                */
-
-
             }
         });
 

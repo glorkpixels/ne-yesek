@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    android:backgroundTint="@color/black"
+    android:backgroundTint="#8F7272"
     tools:context=".Fragments.BMIFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/activity_main_resultcard"
+        android:id="@+id/result"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="6dp"
-        app:cardBackgroundColor="#000000"
         app:cardCornerRadius="6dp"
         app:cardMaxElevation="6dp">
 
@@ -21,7 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible">
 
             <TextView
                 android:layout_width="match_parent"
@@ -29,25 +30,31 @@
                 android:gravity="center_horizontal"
                 android:text="BMI"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:visibility="visible"
+                tools:visibility="visible" />
 
             <TextView
-                android:id="@+id/activity_main_bmi"
+                android:id="@+id/bmires"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#FFFFFF"
                 android:gravity="center_horizontal"
-                android:textSize="20sp" />
+                android:text="asdas"
+                android:textColor="#E40000"
+                android:textSize="20sp"
+                tools:visibility="visible" />
 
             <TextView
-                android:id="@+id/activity_main_category"
+                android:id="@+id/category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
-                android:textSize="16sp" />
+                android:text="asdas"
+                android:textColor="#FF0000"
+                android:textSize="16sp"
+                tools:visibility="visible" />
 
         </LinearLayout>
 

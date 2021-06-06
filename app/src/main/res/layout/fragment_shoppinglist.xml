@@ -16,6 +16,7 @@
         android:id="@+id/deleteMyList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
         android:text="Delete my shoppıng lıst"
         android:textColor="#FFFFFF"
         android:textSize="24sp"

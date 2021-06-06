@@ -11,12 +11,24 @@
         android:layout_height="wrap_content"
         android:theme="@style/Theme.NeYesek.AppBarOverlay">
 
+
         <androidx.appcompat.widget.Toolbar
+
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#000000"
-            app:popupTheme="@style/Theme.NeYesek.PopupOverlay" />
+            app:popupTheme="@style/Theme.NeYesek.PopupOverlay">
+
+            <SearchView
+                android:id="@+id/simpleSearchView"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search Here"
+                />
+        </androidx.appcompat.widget.Toolbar>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 

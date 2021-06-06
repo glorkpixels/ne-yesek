@@ -2,38 +2,38 @@ package com.deu.neyesek.Models;
 
 public class Ingredient {
 
-
+    private String IngredientKey;
     private String TurkishName;
-    private String ingredientKey;
-    private String MainImage;
-    private String GraphImageOne;
-    private String GraphImageTwo;
-    private String ServingSize;
     private String Calorie;
-    private String TotalCarb;
-    private String TotalFat;
-    private String TotalProtein;
-    private String EnglishName;
+    private String ServingSize;
+    private String Protein;
+    private String Fat;
     private String Sugar;
-    private String[] IngredientInformation;
-
-    public Ingredient(String turkishName, String ingredientKey, String mainImage, String graphImageOne, String graphImageTwo, String servingSize, String calorie, String totalCarb, String totalFat, String totalProtein, String englishName, String sugar, String[] ingredientInformation) {
-        TurkishName = turkishName;
-        this.ingredientKey = ingredientKey;
-        MainImage = mainImage;
-        GraphImageOne = graphImageOne;
-        GraphImageTwo = graphImageTwo;
-        ServingSize = servingSize;
-        Calorie = calorie;
-        TotalCarb = totalCarb;
-        TotalFat = totalFat;
-        TotalProtein = totalProtein;
-        EnglishName = englishName;
-        Sugar = sugar;
-        IngredientInformation = ingredientInformation;
-    }
+    private String Sodium;
+    private String EnglishName;
+    private String Carbohydrates;
+    private String Cholesterol;
+    private String SaturatedFat;
+    private String Fiber;
+    private String Potassium;
 
     public Ingredient() {
+    }
+
+    public Ingredient(String turkishName, String calorie, String servingSize, String protein, String fat, String sugar, String sodium, String englishName, String carbohydrates, String cholesterol, String saturatedFat, String fiber, String potassium) {
+        TurkishName = turkishName;
+        Calorie = calorie;
+        ServingSize = servingSize;
+        Protein = protein;
+        Fat = fat;
+        Sugar = sugar;
+        Sodium = sodium;
+        EnglishName = englishName;
+        Carbohydrates = carbohydrates;
+        Cholesterol = cholesterol;
+        SaturatedFat = saturatedFat;
+        Fiber = fiber;
+        Potassium = potassium;
     }
 
     public String getTurkishName() {
@@ -44,36 +44,12 @@ public class Ingredient {
         TurkishName = turkishName;
     }
 
-    public String getIngredientKey() {
-        return ingredientKey;
+    public String getCalorie() {
+        return Calorie;
     }
 
-    public void setIngredientKey(String ingredientKey) {
-        this.ingredientKey = ingredientKey;
-    }
-
-    public String getMainImage() {
-        return MainImage;
-    }
-
-    public void setMainImage(String mainImage) {
-        MainImage = mainImage;
-    }
-
-    public String getGraphImageOne() {
-        return GraphImageOne;
-    }
-
-    public void setGraphImageOne(String graphImageOne) {
-        GraphImageOne = graphImageOne;
-    }
-
-    public String getGraphImageTwo() {
-        return GraphImageTwo;
-    }
-
-    public void setGraphImageTwo(String graphImageTwo) {
-        GraphImageTwo = graphImageTwo;
+    public void setCalorie(String calorie) {
+        Calorie = calorie;
     }
 
     public String getServingSize() {
@@ -84,44 +60,20 @@ public class Ingredient {
         ServingSize = servingSize;
     }
 
-    public String getCalorie() {
-        return Calorie;
+    public String getProtein() {
+        return Protein;
     }
 
-    public void setCalorie(String calorie) {
-        Calorie = calorie;
+    public void setProtein(String protein) {
+        Protein = protein;
     }
 
-    public String getTotalCarb() {
-        return TotalCarb;
+    public String getFat() {
+        return Fat;
     }
 
-    public void setTotalCarb(String totalCarb) {
-        TotalCarb = totalCarb;
-    }
-
-    public String getTotalFat() {
-        return TotalFat;
-    }
-
-    public void setTotalFat(String totalFat) {
-        TotalFat = totalFat;
-    }
-
-    public String getTotalProtein() {
-        return TotalProtein;
-    }
-
-    public void setTotalProtein(String totalProtein) {
-        TotalProtein = totalProtein;
-    }
-
-    public String getEnglishName() {
-        return EnglishName;
-    }
-
-    public void setEnglishName(String englishName) {
-        EnglishName = englishName;
+    public void setFat(String fat) {
+        Fat = fat;
     }
 
     public String getSugar() {
@@ -132,11 +84,116 @@ public class Ingredient {
         Sugar = sugar;
     }
 
-    public String[] getIngredientInformation() {
-        return IngredientInformation;
+    public String getSodium() {
+        return Sodium;
     }
 
-    public void setIngredientInformation(String[] ingredientInformation) {
-        IngredientInformation = ingredientInformation;
+    public void setSodium(String sodium) {
+        Sodium = sodium;
+    }
+
+    public String getEnglishName() {
+        return EnglishName;
+    }
+
+    public void setEnglishName(String englishName) {
+        EnglishName = englishName;
+    }
+
+    public String getCarbohydrates() {
+        return Carbohydrates;
+    }
+
+    public void setCarbohydrates(String carbohydrates) {
+        Carbohydrates = carbohydrates;
+    }
+
+    public String getCholesterol() {
+        return Cholesterol;
+    }
+
+    public void setCholesterol(String cholesterol) {
+        Cholesterol = cholesterol;
+    }
+
+    public String getSaturatedFat() {
+        return SaturatedFat;
+    }
+
+    public void setSaturatedFat(String saturatedFat) {
+        SaturatedFat = saturatedFat;
+    }
+
+    public String getFiber() {
+        return Fiber;
+    }
+
+    public void setFiber(String fiber) {
+        Fiber = fiber;
+    }
+
+    public String getPotassium() {
+        return Potassium;
+    }
+
+    public void setPotassium(String potassium) {
+        Potassium = potassium;
+    }
+
+    public String getIngredientKey() {
+        return IngredientKey;
+    }
+
+    public void setIngredientKey(String ingredientKey) {
+        IngredientKey = ingredientKey;
+    }
+
+
+    public String getStringOfValues(){
+/*
+        private String EnglishName;
+        private String IngredientKey;
+        private String TurkishName;
+        private String Calorie;
+        private String ServingSize;
+
+        private String Protein;
+        private String Fat;
+        private String Sugar;
+        private String Sodium;
+
+        private String Carbohydrates;
+        private String Cholesterol;
+        private String SaturatedFat;
+        private String Fiber;
+
+        private String Potassium;*/
+        return  "Carbohydrates: " + getCarbohydrates() + "\n" + "Protein: " + getProtein() + "\n" + "Fat: " + getFat() + "\n" + "Sugar: " + getSugar() + "\n" + "Sodium: " + getSodium() + "\n" + "Cholesterol: " + getCholesterol() + "\n"
+                + "SaturatedFat: " + getSaturatedFat() + "\n"  + "Fiber: " + getFiber() + "\n" + "Potassium: " + getPotassium() + "\n"
+                ;
+
+    }
+
+    public String getShortDesc(){
+/*
+        private String EnglishName;
+        private String IngredientKey;
+        private String TurkishName;
+        private String Calorie;
+        private String ServingSize;
+
+        private String Protein;
+        private String Fat;
+        private String Sugar;
+        private String Sodium;
+
+        private String Carbohydrates;
+        private String Cholesterol;
+        private String SaturatedFat;
+        private String Fiber;
+
+        private String Potassium;*/
+        return  getCalorie() + "\n" + getServingSize();
+
     }
 }

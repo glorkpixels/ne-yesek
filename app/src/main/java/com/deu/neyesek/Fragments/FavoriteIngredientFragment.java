@@ -100,9 +100,9 @@ public class FavoriteIngredientFragment extends Fragment {
         recipeRecyclerView  = fragmentView.findViewById(R.id.ingredientRV);
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        databaseReference = firebaseDatabase.getReference("UserFavorites").child(firebaseUser.getUid()).child("Ingredients");
+        databaseReference = firebaseDatabase.getReference("UserFavorites").child(firebaseUser.getUid()).child("Ingredient");
 
-        databaseReference2 = firebaseDatabase.getReference("Ingridients");
+        databaseReference2 = firebaseDatabase.getReference("Ingredient");
         temp = "";
         recipeList = new ArrayList<>();
         recipeIdList = new ArrayList<>();
@@ -158,7 +158,6 @@ public class FavoriteIngredientFragment extends Fragment {
                         lol[0].replace("\n", "");
                         System.out.println(lol[0]);
                         ingredient.setTurkishName(map.get("Turkish Name").replace("\n", ""));
-                        ingredient.setMainImage(map.get("Image Header"));
                         String xx = map.get("Calorie") + " CAL";
                         System.out.println(xx);
                         ingredient.setCalorie(map.get("Calorie") + " CAL");

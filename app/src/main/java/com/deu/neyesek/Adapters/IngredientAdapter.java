@@ -63,9 +63,11 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tvTitle.setText(mData.get(position).getTurkishName());
-        holder.tvDesc.setText(mData.get(position).getCalorie());
-
+        holder.tvDesc.setText(mData.get(position).getServingSize());
+        holder.tvCal.setText(mData.get(position).getCalorie());
         firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
         holder.buttonFavorite.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             //animation
@@ -79,15 +81,45 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
 
         });
 
+        holder.buttonShopList.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            //animation
+            ScaleAnimation scaleAnimation = new ScaleAnimation(0.7f, 1.0f, 0.7f, 1.0f, Animation.RELATIVE_TO_SELF, 0.7f, Animation.RELATIVE_TO_SELF, 0.7f);
+            scaleAnimation.setDuration(500);
+            BounceInterpolator bounceInterpolator = new BounceInterpolator();
+            scaleAnimation.setInterpolator(bounceInterpolator);
+            compoundButton.startAnimation(scaleAnimation);
+
+
+
+        });
 
         holder.buttonFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                DatabaseReference databaseReference = firebaseDatabase.getReference("UserFavorites").child(firebaseUser.getUid()).child("Ingredients").push();
+                DatabaseReference databaseReference = firebaseDatabase.getReference("UserFavorites").child(firebaseUser.getUid()).child("Ingredient").push();
                 mList ingre = new mList();
                 ingre.setcKey(mData.get(position).getTurkishName());
                 databaseReference.setValue(ingre).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    }
+                });
+
+            }
+        });
+        holder.buttonShopList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatabaseReference databaseReference2 = firebaseDatabase.getReference("UserShoppingList").child(firebaseUser.getUid()).push();
+                mList ingre = new mList();
+                ingre.setcKey(mData.get(position).getTurkishName());
+                databaseReference2.setValue(ingre).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                     }
@@ -111,16 +143,18 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
-        ImageView imgPost;
+        TextView tvCal;
         TextView tvDesc;
         CompoundButton buttonFavorite;
-
+        CompoundButton buttonShopList;
         public MyViewHolder(View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.row_ingredient_title);
-            tvDesc = itemView.findViewById(R.id.row_ingredient_description);
+            tvDesc = itemView.findViewById(R.id.row_ingredient_serving_size);
+            tvCal = itemView.findViewById(R.id.row_ingredient_calorie);
             buttonFavorite = itemView.findViewById(R.id.button_favorite_ing);
+            buttonShopList = itemView.findViewById(R.id.button_shop_ing);
 
 
 
@@ -130,22 +164,13 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
                     Intent IngredientDetailActivity = new Intent(mContext, IngredientDetailActivity.class);
                     int position = getAdapterPosition();
                     System.out.println( mData.get(position).getIngredientKey() + " lol");
+                    IngredientDetailActivity.putExtra("Key", mData.get(position).getIngredientKey());
+                    IngredientDetailActivity.putExtra("Name", mData.get(position).getTurkishName());
 
-                    /*
-                    IngredientDetailActivity.putExtra("Name", mData.get(position).getName());
-                    IngredientDetailActivity.putExtra("Image", mData.get(position).getImage());
-                    IngredientDetailActivity.putExtra("xd", mData.get(position).getIngridients());
-                    IngredientDetailActivity.putExtra("sdd", mData.get(position).getRecipeDetails());
-                    //System.out.println(mData.get(position).getRecipeDetails() + " lol");
-                    //postDetailActivity.putExtra("prepdet", mData.get(position).getPrepDetails());
-                    IngredientDetailActivity.putExtra("postKey", mData.get(position).getRecipeKey());
-                    // will fix this later i forgot to add user name to post object
-                    // postDetailActivity.putExtra("userId", mData.get(position).getIngridients());
+                    IngredientDetailActivity.putExtra("descshort", mData.get(position).getShortDesc());
 
-
-                    */
+                    IngredientDetailActivity.putExtra("desc", mData.get(position).getStringOfValues());
                     mContext.startActivity(IngredientDetailActivity);
-                    // if any post clicked we call post detail activity to show of post details and comments of it
 
                 }
             });

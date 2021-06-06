@@ -20,11 +20,6 @@ public class BMICalcUtil {
         return (weightKg / ((heightCm / CENTIMETERS_IN_METER) * (heightCm / CENTIMETERS_IN_METER)));
     }
 
-    public double calculateBMIImperial(double heightFeet, double heightInches, double weightLbs) {
-        double totalHeightInInches = (heightFeet * INCHES_IN_FOOT) + heightInches;
-        return (BMI_IMPERIAL_WEIGHT_SCALAR * weightLbs) / (totalHeightInInches * totalHeightInInches);
-    }
-
     public String classifyBMI(double bmi) {
         if (bmi < 18.5) {
             return BMI_CATEGORY_UNDERWEIGHT;

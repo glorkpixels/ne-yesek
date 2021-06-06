@@ -12,10 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.deu.neyesek.Adapters.IngredientAdapter;
 import com.deu.neyesek.Models.BMI;
 import com.deu.neyesek.Models.BMICalcUtil;
-import com.deu.neyesek.Models.Ingredient;
 import com.deu.neyesek.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,13 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.Map;
-
-import static com.deu.neyesek.Models.BMICalcUtil.BMI_CATEGORY_HEALTHY;
-import static com.deu.neyesek.Models.BMICalcUtil.BMI_CATEGORY_OBESE;
-import static com.deu.neyesek.Models.BMICalcUtil.BMI_CATEGORY_OVERWEIGHT;
-import static com.deu.neyesek.Models.BMICalcUtil.BMI_CATEGORY_UNDERWEIGHT;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,11 +36,16 @@ public class BMIFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static final String BMI_CATEGORY_UNDERWEIGHT = "Underweight";
+    public static final String BMI_CATEGORY_HEALTHY = "Healthy Weight Range";
+    public static final String BMI_CATEGORY_OVERWEIGHT = "Overweight";
+    public static final String BMI_CATEGORY_OBESE = "Obese";
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference2 ;
     String userId;
+    BMI cal = new BMI();
     CardView bmiResultCardView;
     TextView bmiTextView, categoryTextView;
     // TODO: Rename and change types of parameters
@@ -80,9 +77,9 @@ public class BMIFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
 
+
+        displayBMI(cal.getBmi());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -93,30 +90,40 @@ public class BMIFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View fragmentView = inflater.inflate(R.layout.fragment_b_m_i, container, false);
-        bmiTextView = fragmentView.findViewById(R.id.activity_main_bmi);
-        categoryTextView = fragmentView.findViewById(R.id.activity_main_category);
-        bmiResultCardView = fragmentView.findViewById(R.id.activity_main_resultcard);
+        View fragmentView = inflater.inflate(R.layout.fragment_bmifrag, container, false);
+        bmiTextView = fragmentView.findViewById(R.id.bmires);
+        categoryTextView = fragmentView.findViewById(R.id.category);
+        bmiResultCardView = fragmentView.findViewById(R.id.result);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference2 = firebaseDatabase.getReference("User");
+
+        bmiTextView.setText("OF");
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot postsnap : dataSnapshot.getChildren()) {
                     //System.out.println(postsnap.toString());
+                    System.out.println(postsnap.getKey());
+                    System.out.println(firebaseUser.getUid());
                     if (firebaseUser.getUid().equals(postsnap.getKey())) {
                         System.out.println("TRUE");
                         Map<String, String> map = (Map) postsnap.getValue();
-                        BMI cal = new BMI();
-                        cal.setHeight(Double.valueOf(map.get("Height")));
-                        cal.setWeight(Double.valueOf(map.get("Weight")));
+                        cal.setHeight(Double.parseDouble(map.get("Height")));
+                        cal.setWeight(Double.parseDouble(map.get("Weight")));
+                        System.out.println(cal.getHeight());
+                        System.out.println(cal.getWeight());
                         cal.setBmi( BMICalcUtil.getInstance().calculateBMIMetric(cal.getHeight(), cal.getWeight()));
-                        displayBMI(cal.getBmi());
 
+                        System.out.println(cal.getBmi());
+
+                        displayBMI(BMICalcUtil.getInstance().calculateBMIMetric(cal.getHeight(), cal.getWeight()));
+
+                        break;
                     }
                 }
-
             }
 
             @Override
@@ -125,19 +132,18 @@ public class BMIFragment extends Fragment {
             }
         });
 
-
-
+        displayBMI(cal.getBmi());
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_b_m_i, container, false);
+
+        return inflater.inflate(R.layout.fragment_bmifrag, container, false);
     }
 
-            private void displayBMI(double bmi) {
-                bmiResultCardView.setVisibility(View.VISIBLE);
-
+            public void displayBMI(double bmi) {
                 bmiTextView.setText(String.format("%.2f", bmi));
-
+                System.out.println(String.format("%.2f", bmi));
                 String bmiCategory = BMICalcUtil.getInstance().classifyBMI(bmi);
+                System.out.println(bmiCategory);
                 categoryTextView.setText(bmiCategory);
 
                 switch (bmiCategory) {
@@ -148,9 +154,10 @@ public class BMIFragment extends Fragment {
                         bmiResultCardView.setCardBackgroundColor(Color.GREEN);
                         break;
                     case BMI_CATEGORY_OVERWEIGHT:
-                        bmiResultCardView.setCardBackgroundColor(Color.YELLOW);
+                        bmiResultCardView.setCardBackgroundColor(Color.BLUE);
                         break;
                     case BMI_CATEGORY_OBESE:
+                        System.out.println("burası");
                         bmiResultCardView.setCardBackgroundColor(Color.RED);
                         break;
                 }

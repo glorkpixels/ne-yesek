@@ -98,7 +98,7 @@ public class IngredientFragment extends Fragment {
         ingredientRecyclerView.setHasFixedSize(true);
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        databaseReference = firebaseDatabase.getReference("Ingridients");
+        databaseReference = firebaseDatabase.getReference("Ingredient");
 
 
         return fragmentView;
@@ -123,33 +123,22 @@ public class IngredientFragment extends Fragment {
                     lol[0].replace("\n", "");
                     System.out.println(lol[0]);
                     ingredient.setTurkishName(map.get("Turkish Name").replace("\n", ""));
-                    ingredient.setMainImage(map.get("Image Header"));
+                    ingredient.setServingSize(map.get("Serving Size") + " GRAM");
                     String xx = map.get("Calorie") + " CAL";
                     System.out.println(xx);
                     ingredient.setCalorie(map.get("Calorie") + " CAL");
 
-                    /*
-                    recipe.setRecipeKey(postsnap.getKey());
 
-                    recipe.setName(map.get("Name"));
-                    recipe.setShortDescription(map.get("ShortDescription"));
-                    recipe.setImage(map.get("Image"));
-                    recipe.setPrepDetails(map.get("PrepDetails"));
-                    recipe.setIngridients(map.get("Ingridients"));
-
-                    recipe.setCategoryBread(map.get("CategoryBread"));
-                    recipe.setCuisine(map.get("Cuisine"));
-                    recipe.setMainCategory(map.get("Category"));
-
-                    recipe.setIngridientNames(map.get("IngridientNames"));
-                    recipe.setKeywords(map.get("Keywords"));
-                    recipe.setRecipeDetails(map.get("RecipeDetails"));
-                    //System.out.println(map.get("RecipeDetails"));
-
-
-                    recipe.setRecipeDetails(aan);
-                   //String prep = map.get("RecipeDetails");
-                    */
+                    ingredient.setCarbohydrates("Carbohydrates");
+                    ingredient.setCholesterol("Cholesterol");
+                    ingredient.setEnglishName("English Name");
+                    ingredient.setSugar("Sugar");
+                    ingredient.setPotassium("Potassium");
+                    ingredient.setFat("Fat");
+                    ingredient.setSaturatedFat("Saturated Fat");
+                    ingredient.setFiber("Fiber");
+                    ingredient.setSodium("Sodium");
+                    ingredient.setProtein("Protein");
                     ingredientlist.add(ingredient);
 
 

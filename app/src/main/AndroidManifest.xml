@@ -22,7 +22,12 @@
 
 
         </activity>
+        <activity
+            android:name=".Activity.IngredientDetailActivity"
+            android:label="@string/title_activity_ingredient_detail">
 
+
+        </activity>
         <activity
             android:name=".Activity.LoginActivity"
             android:theme="@style/Theme.NeYesek.NoActionBar">

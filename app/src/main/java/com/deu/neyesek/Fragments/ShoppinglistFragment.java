@@ -105,10 +105,17 @@ public class ShoppinglistFragment extends Fragment {
 
                 for (DataSnapshot postsnap : dataSnapshot.getChildren()) {
                     temp ="";
-                    temp = postsnap.getValue(String.class);
-                    temp.replace(";"," \n");
-                    shopl += temp;
-                    System.out.println(postsnap.getValue(String.class));
+                    try {
+                        temp = postsnap.getValue(String.class);
+                        temp.replace(";"," \n");
+                        shopl += temp;
+                        System.out.println(postsnap.getValue(String.class));
+                    }
+                    catch (Exception e){
+                        Map<String, String> map = (Map) postsnap.getValue();
+                        shopl += (String) map.get("mKey") + "\n";
+                    }
+
                 }
 
                 List = fragmentView.findViewById(R.id.shoppinglists);
