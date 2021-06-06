@@ -10,8 +10,8 @@
 
     <TextView
         android:id="@+id/applicationName"
-        android:layout_width="248dp"
-        android:layout_height="93dp"
+        android:layout_width="245dp"
+        android:layout_height="53dp"
         android:gravity="center_horizontal"
         android:text="Ne Yesek"
         android:textAlignment="center"
@@ -27,16 +27,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.109" />
 
+
     <EditText
         android:id="@+id/emailLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
         android:layout_marginBottom="324dp"
-        android:background="#E6E4C6"
+        android:autofillHints=""
+        android:background="#FFFFFF"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -45,26 +45,25 @@
         android:textColorHint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/applicationName"
-        app:layout_constraintVertical_bias="1.0"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/passwordLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
         android:layout_marginBottom="252dp"
-        android:background="#E6E4C6"
+        android:autofillHints=""
+        android:background="#FFFFFF"
         android:ems="10"
         android:hint="Password"
         android:inputType="textVisiblePassword"
         android:padding="10dp"
+        android:password="true"
         android:textColor="#000000"
         android:textColorHint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -72,8 +71,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLogin"
-        app:layout_constraintVertical_bias="0.326"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/login"
@@ -87,9 +85,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
-
+        app:layout_constraintTop_toBottomOf="@+id/passwordLogin"
+        app:layout_constraintVertical_bias="0.768" />
 
     <Button
         android:id="@+id/createAccount"
@@ -103,10 +102,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLogin"
-        app:layout_constraintVertical_bias="1.0"/>
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -116,8 +114,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/applicationName"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintVertical_bias="0.414"
+        app:srcCompat="@drawable/ic_launcher_mine" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
