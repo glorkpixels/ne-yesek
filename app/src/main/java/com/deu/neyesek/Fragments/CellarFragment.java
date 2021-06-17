@@ -1,7 +1,10 @@
 package com.deu.neyesek.Fragments;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,6 +49,7 @@ public class CellarFragment extends Fragment {
     List<String> recipeIdList;
     List recipeList;
 
+    private CellarFragment.OnFragmentInteractionListener mListener;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -82,6 +86,8 @@ public class CellarFragment extends Fragment {
         super.onCreate(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -102,6 +108,17 @@ public class CellarFragment extends Fragment {
         temp = "";
         recipeList = new ArrayList<>();
         recipeIdList = new ArrayList<>();
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                //Handle the back pressed
+                View fragmentView2 = inflater.inflate(R.layout.fragment_home, container, false);
+                getParentFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment() ).commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
+
 
         recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recipeRecyclerView.setHasFixedSize(true);
@@ -193,4 +210,27 @@ public class CellarFragment extends Fragment {
 
         return fragmentView;
     }
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
 }

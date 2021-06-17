@@ -144,6 +144,10 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
             getSupportActionBar().setTitle("Favorites");
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new FavoriteFragment()).commit();
         }
+        else if(id == R.id.PreFragment){
+            getSupportActionBar().setTitle("Preferences");
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new FavoriteFragment()).commit();
+        }
         else if (id == R.id.Signout) {
             FirebaseAuth.getInstance().signOut();
             Intent i = new Intent(UserDrawer.this, LoginActivity.class);

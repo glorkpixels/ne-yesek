@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -91,6 +92,17 @@ public class IngredientFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                //Handle the back pressed
+                View fragmentView2 = inflater.inflate(R.layout.fragment_home, container, false);
+                getParentFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment() ).commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
+
         View fragmentView = inflater.inflate(R.layout.fragment_ingredient, container, false);
         ingredientRecyclerView  = fragmentView.findViewById(R.id.ingredientRV);
 

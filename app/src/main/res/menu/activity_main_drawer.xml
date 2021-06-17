@@ -30,8 +30,15 @@
             android:title="Favorites" />
 
         <item
+            android:id="@+id/PreFragment"
+            android:icon="@drawable/preferences"
+            android:title="Preferences" />
+
+        <item
             android:id="@+id/Signout"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:title="SignOut " />
+
+
     </group>
 </menu>

@@ -2,6 +2,7 @@ package com.deu.neyesek.Fragments;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -95,6 +96,17 @@ public class FavoriteIngredientFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                //Handle the back pressed
+                View fragmentView2 = inflater.inflate(R.layout.fragment_favorite, container, false);
+                getParentFragmentManager().beginTransaction().replace(R.id.container, new FavoriteFragment() ).commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
+
         // Inflate the layout for this fragment
         View fragmentView = inflater.inflate(R.layout.fragment_favorite_ingredient, container, false);
         recipeRecyclerView  = fragmentView.findViewById(R.id.ingredientRV);

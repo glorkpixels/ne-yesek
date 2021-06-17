@@ -101,6 +101,7 @@ public class HomeFragment extends Fragment {
         Recipe.setOnClickListener(v -> {
             View fragmentView2 = inflater.inflate(R.layout.fragment_recipe, container, false);
             getParentFragmentManager().beginTransaction().replace(R.id.container, new RecipeFragment() ).commit();
+
         });
 
         Menus = fragmentView.findViewById(R.id.menus);
@@ -122,6 +123,7 @@ public class HomeFragment extends Fragment {
         ShopList.setOnClickListener(v -> {
             View fragmentView2 = inflater.inflate(R.layout.fragment_shoppinglist, container, false);
             getParentFragmentManager().beginTransaction().replace(R.id.container, new ShoppinglistFragment() ).commit();
+
         });
 
         Recommend = fragmentView.findViewById(R.id.recommend);
