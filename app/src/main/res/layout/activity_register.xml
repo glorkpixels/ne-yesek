@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.RecommendationFragment"
+    android:background="@drawable/food"
+    >
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="@drawable/food"
     tools:context=".Activity.RegisterActivity">
 
@@ -22,11 +32,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <EditText
         android:id="@+id/name"
-        android:layout_width="285dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="64dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -35,18 +47,19 @@
         android:padding="10dp"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintVertical_bias="0.235" />
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="285dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="64dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -55,18 +68,17 @@
         android:padding="10dp"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surname"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toBottomOf="@+id/surname" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="285dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="64dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -75,20 +87,17 @@
         android:padding="10dp"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintVertical_bias="0.021" />
-
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
         android:id="@+id/gender"
-        android:layout_width="285dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
+        android:layout_marginTop="12dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Gender Male/Female"
@@ -96,18 +105,16 @@
         android:padding="10dp"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <EditText
         android:id="@+id/height"
-        android:layout_width="285dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="64dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -116,20 +123,17 @@
         android:padding="10dp"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gender"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintTop_toBottomOf="@+id/gender" />
 
     <EditText
         android:id="@+id/weight"
-        android:layout_width="285dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginTop="12dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Weight (kg)"
@@ -137,40 +141,38 @@
         android:padding="10dp"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/height"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintTop_toBottomOf="@+id/height" />
 
     <EditText
         android:id="@+id/age"
-        android:layout_width="285dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="88dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Age"
+        android:includeFontPadding="false"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weight"
-        app:layout_constraintVertical_bias="0.136" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/surname"
-        android:layout_width="285dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="12dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Surname"
@@ -178,18 +180,16 @@
         android:padding="10dp"
         android:textColor="#000000"
         android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <Button
 
         android:id="@+id/register"
-        android:layout_width="192dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="96dp"
@@ -203,8 +203,8 @@
 
     <Button
         android:id="@+id/backToLogin"
-        android:layout_width="247dp"
-        android:layout_height="38dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="16dp"
@@ -221,3 +221,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

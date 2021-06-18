@@ -3,8 +3,6 @@
     package="com.deu.neyesek">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,19 +13,23 @@
         android:roundIcon="@drawable/ic_launcher_mine"
         android:supportsRtl="true"
         android:theme="@style/Theme.NeYesek">
+        <activity
+            android:name=".Activity.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
 
         <activity
             android:name=".Activity.RecipeDetailActivity"
-            android:label="@string/title_activity_recipe_detail">
-
-
-        </activity>
+            android:label="@string/title_activity_recipe_detail"></activity>
         <activity
             android:name=".Activity.IngredientDetailActivity"
-            android:label="@string/title_activity_ingredient_detail">
-
-
-        </activity>
+            android:label="@string/title_activity_ingredient_detail"></activity>
         <activity
             android:name=".Activity.LoginActivity"
             android:theme="@style/Theme.NeYesek.NoActionBar">

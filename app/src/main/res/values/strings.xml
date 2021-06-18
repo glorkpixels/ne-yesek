@@ -20,4 +20,31 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_preferences">PreferencesActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="recommend_me">Recommend me</string>
+    <string name="stenilen_n_n_miktar">İstenilen Öğün Miktarı</string>
+    <string name="bir_nl_k">Bir öğünlük</string>
+    <string name="bir_g_nl_k">Bir günlük</string>
+    <string name="g_nl_k">Üç günlük</string>
+    <string name="yedi_g_nl_k">Yedi günlük</string>
+    <string name="stenilen_tarif_n_zamanlar">İstenilen Tarif zamanları</string>
+    <string name="le_yeme_i">Öğle Yemeği</string>
+    <string name="kahvalt">Kahvaltı</string>
+    <string name="ak_am_yeme_i">Akşam Yemeği</string>
 </resources>

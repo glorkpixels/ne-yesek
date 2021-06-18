@@ -1,14 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.RecommendationFragment">
+    tools:context=".Fragments.RecommendationFragment"
+    android:background="@drawable/food"
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/placeogunzamanları3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:text="kişisel ayarlarımı kullan"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_yes" />
+
+    <TextView
+        android:id="@+id/placeogunzamanları2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:text="evdeki malzemeler mi kullanılsın"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_Lunch" />
+
+    <TextView
+        android:id="@+id/xxx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="624dp"
+        android:text="@string/hello_blank_fragment"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/placeogunsayısı"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:text="@string/stenilen_n_n_miktar"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/placeogunzamanları"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="228dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:text="@string/stenilen_tarif_n_zamanlar"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox_Dinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:buttonTint="@color/tealoflove"
+        android:text="@string/ak_am_yeme_i"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/recommendme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintStart_toEndOf="@+id/checkBox_Breakfast"
+        app:layout_constraintTop_toBottomOf="@+id/placeogunzamanları"
+        app:layout_constraintVertical_bias="0.034" />
+
+    <CheckBox
+        android:id="@+id/checkBox_Breakfast"
+        android:layout_width="102dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:buttonTint="@color/tealoflove"
+        android:text="@string/kahvalt"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placeogunzamanları" />
+
+    <CheckBox
+        android:id="@+id/checkBox_Lunch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:buttonTint="@color/tealoflove"
+
+        android:text="@string/le_yeme_i"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox_Dinner"
+        app:layout_constraintStart_toEndOf="@+id/checkBox_Breakfast"
+        app:layout_constraintTop_toBottomOf="@+id/placeogunzamanları" />
+
+
+    <CheckBox
+        android:id="@+id/checkBox_yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+
+        android:buttonTint="@color/tealoflove"
+        android:text="Evet"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placeogunzamanları2" />
+
+    <CheckBox
+        android:id="@+id/checkBox_yes_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/black_gradient"
+
+        android:backgroundTint="@color/black"
+        android:buttonTint="@color/tealoflove"
+        android:text="Evet"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placeogunzamanları3" />
+
+    <Button
+        android:id="@+id/recommendme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="@string/recommend_me"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_yes_fav"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <CheckBox
+        android:id="@+id/checkBox_tekogun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:buttonTint="@color/tealoflove"
+        android:text="@string/bir_nl_k"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placeogunsayısı" />
+
+    <CheckBox
+        android:id="@+id/checkBox_birgünlük"
+        android:layout_width="107dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:buttonTint="@color/tealoflove"
+        android:text="@string/bir_g_nl_k"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toEndOf="@+id/checkBox_tekogun"
+        app:layout_constraintTop_toBottomOf="@+id/placeogunsayısı" />
+
+    <CheckBox
+        android:id="@+id/checkBox_ücgünlük"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:buttonTint="@color/tealoflove"
+        android:text="@string/g_nl_k"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/placeogunzamanları"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_tekogun"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <CheckBox
+        android:id="@+id/checkBox_7günlük"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/black_gradient"
+        android:backgroundTint="@color/black"
+        android:buttonTint="@color/tealoflove"
+        android:text="@string/yedi_g_nl_k"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/placeogunzamanları"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.693"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_tekogun"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
