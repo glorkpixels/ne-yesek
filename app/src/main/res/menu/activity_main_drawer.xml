@@ -35,6 +35,11 @@
             android:title="Preferences" />
 
         <item
+            android:id="@+id/MyBMI"
+            android:icon="@drawable/bmi"
+            android:title="My BMI " />
+
+        <item
             android:id="@+id/Signout"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:title="SignOut " />

@@ -79,7 +79,6 @@ public class BMIFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-        displayBMI(cal.getBmi());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -136,7 +135,7 @@ public class BMIFragment extends Fragment {
 
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_bmifrag, container, false);
+        return fragmentView;
     }
 
             public void displayBMI(double bmi) {

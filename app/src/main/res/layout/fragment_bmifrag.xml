@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    android:backgroundTint="#8F7272"
+    android:backgroundTint="#000000"
     tools:context=".Fragments.BMIFragment">
 
     <androidx.cardview.widget.CardView
@@ -41,7 +41,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:text="asdas"
-                android:textColor="#E40000"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 tools:visibility="visible" />
 
@@ -52,7 +52,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:text="asdas"
-                android:textColor="#FF0000"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 tools:visibility="visible" />
 

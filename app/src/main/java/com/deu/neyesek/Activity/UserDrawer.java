@@ -134,7 +134,7 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
         }
         else  if (id == R.id.RecipeFragment){
             getSupportActionBar().setTitle("Recipes");
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new RecipeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new BMIFragment()).commit();
         }
         else  if (id == R.id.IngredientFragment){
             getSupportActionBar().setTitle("Ingredients");
@@ -147,6 +147,10 @@ public class UserDrawer extends AppCompatActivity implements NavigationView.OnNa
         else if(id == R.id.PreFragment){
             getSupportActionBar().setTitle("Preferences");
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new FavoriteFragment()).commit();
+        }
+        else if(id == R.id.MyBMI){
+            getSupportActionBar().setTitle("BMI");
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new BMIFragment()).commit();
         }
         else if (id == R.id.Signout) {
             FirebaseAuth.getInstance().signOut();
