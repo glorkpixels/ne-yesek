@@ -15,10 +15,14 @@ public class Recipe {
     private String Keywords;
     private String PrepDetails;
     private String RecipeDetails;
+    private String dayc;
+    private String timeofDay;
 
     public Recipe() {
 
     }
+
+
 
     public Recipe(String categoryBread, String name, String mainCategory, String cuisine, String image, String shortDescription, String ingridientNames, String ingridients, String keywords, String prepDetails, String recipeDetails) {
         CategoryBread = categoryBread;
@@ -128,5 +132,20 @@ public class Recipe {
 
     public void setRecipeDetails(String recipeDetails) {
         RecipeDetails = recipeDetails;
+    }
+    public String getDayc() {
+        return dayc;
+    }
+
+    public void setDayc(String dayc) {
+        this.dayc = dayc;
+    }
+
+    public String getTimeofDay() {
+        return timeofDay;
+    }
+
+    public void setTimeofDay(String timeofDay) {
+        this.timeofDay = timeofDay;
     }
 }
