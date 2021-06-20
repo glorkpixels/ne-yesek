@@ -153,6 +153,7 @@ public class IngredientDetailActivity extends AppCompatActivity {
 
                 mList meal = new mList();
                 meal.setcKey(PostKey);
+                meal.setName(postTitle);
 
                 myRef.setValue(meal).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

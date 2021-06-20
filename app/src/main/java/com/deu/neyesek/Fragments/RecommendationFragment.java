@@ -61,7 +61,8 @@ public class RecommendationFragment extends Fragment {
     Button recommendMe;
     TextView recommendations;
     View fragmentView ;
-    String url = "https://neyesekapi.herokuapp.com/recommendation?";
+    String urlmain = "https://neyesekapi.herokuapp.com/";
+    String url;
     private String mParam1;
     private String mParam2;
     private RecommendationFragment.OnFragmentInteractionListener mListener;
@@ -103,6 +104,15 @@ public class RecommendationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                //Handle the back pressed
+                View fragmentView2 = inflater.inflate(R.layout.fragment_home, container, false);
+                getParentFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment() ).commit();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         fragmentView = inflater.inflate(R.layout.fragment_recommendation, container, false);
@@ -132,6 +142,7 @@ public class RecommendationFragment extends Fragment {
         recommendMe.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
+                url = urlmain;
                 m=0;
                 o=0;
                 if(oneMeal.isChecked())
@@ -150,9 +161,69 @@ public class RecommendationFragment extends Fragment {
                 if(dinner.isChecked())
                     o++; // you can save this as checked somewhere
 
-                if (m == 1 && o>0){
+                if (m == 1 && o>0 && !(oneMeal.isChecked() && o>1)){
                     System.out.println("Basıldım");
 
+                    if(oneMeal.isChecked())
+                    {
+                        url += "recommendonemeal?&";
+                        url +=  "UserKey=" + firebaseUser.getUid().toString() + "&";
+
+                        if (breakfast.isChecked())
+                        {
+                            url += "MealSelect=0" + "&";
+                        }
+                        else if (lunch.isChecked())
+                        {
+                            url += "MealSelect=1"+ "&" ;
+                        }
+                        else if(dinner.isChecked())
+                        {
+                            url += "MealSelect=2" + "&";
+                        }
+
+                        if(yestoHome.isChecked())
+                        {
+                            url += "HomeIngredients=1"+ "&";
+                        }
+                        else {
+                            url += "HomeIngredients=0"+ "&";
+                        }
+
+
+                        if(yestoPrefrences.isChecked())
+                        {
+                            url += "UserPref=1";
+                        }
+                        else {
+                            url += "UserPref=0";
+                        }
+
+
+                        System.out.println(url);
+
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                                (Request.Method.GET, url,  null, (Response.Listener<JSONObject>) response -> {
+                                    recommendations.setText("Response: " + response.toString());
+
+                                    System.out.println(response.toString());
+
+                                    Toast.makeText(getActivity().getBaseContext(), "Recommendation done.", Toast.LENGTH_LONG).show();
+                                }, new Response.ErrorListener() {
+
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getActivity().getBaseContext(), "Recommendation service cannot be reached please try again.", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                        MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+
+
+                    }
+
+
+
+/*
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                             (Request.Method.GET, url,  null, (Response.Listener<JSONObject>) response -> {
                                 recommendations.setText("Response: " + response.toString());
@@ -166,10 +237,13 @@ public class RecommendationFragment extends Fragment {
                                     Toast.makeText(getActivity().getBaseContext(), "Recommendation service cannot be reached please try again.", Toast.LENGTH_LONG).show();
                                 }
                             });
-                    MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+                    MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsonObjectRequest);*/
                 }
                 else
                 {
+                    if(oneMeal.isChecked() && o>1){
+                        Toast.makeText(getActivity().getBaseContext(), "Lütfen tek öğün miktarı seçtiniz tek tarif zamanı seçin.", Toast.LENGTH_LONG).show();
+                    }
                     if (m >1){
                         Toast.makeText(getActivity().getBaseContext(), "Lütfen tek öğün miktarı seçin.", Toast.LENGTH_LONG).show();
                     }
